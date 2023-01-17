@@ -1,8 +1,6 @@
 const cors = require("cors");
 const express = require("express");
-//
-const songController = require("./controllers/songController");
-// CONFIG
+// const songController = require("./controllers/songController.js");
 const app = express();
 
 // MIDDLEWARE
