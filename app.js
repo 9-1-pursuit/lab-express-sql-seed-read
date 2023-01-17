@@ -10,7 +10,12 @@ app.use(cors())
 app.use(express.json())
 app.use("/")
 
-// ROUTESs
+// ROUTES
+app.get("/", (req, res) => {
+  res.send("Welcome to Tuner")
+})
+
+// 404 page
 app.get("/", (req, res) => {
   res.status(404).send("Page not Found")
 })
