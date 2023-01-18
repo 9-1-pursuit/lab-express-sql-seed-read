@@ -27,6 +27,5 @@
     "supertest": "^6.2.0"
   },
   "homepage": "https://github.com/joinpursuit/tuner-full-stack-app#readme",
-  "devDependencies": {},
   "keywords": []
 }
