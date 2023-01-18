@@ -21,9 +21,23 @@ async function getOneSong(idValue) {
     }
 }
 
+// Create/ add new song object -> .one() with RETURNING keyword to return the inserted row/obj
+async function createSong(obj) {
+    try {
+        const newSong = await database.one(
+        'INSERT INTO songs(name, artist, album, time, is_favorite) VALUES ($1, $2, $3, $4, $5) RETURNING *', 
+        [obj.name, obj.artist, obj.album, obj.time, obj.is_favorite]
+        )
+        return newSong
+    } catch(err) {
+        return err
+    }
+}
+
 
 
 module.exports = {
     getAllSongs,
     getOneSong,
+    createSong,
 }
