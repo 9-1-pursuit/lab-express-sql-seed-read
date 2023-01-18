@@ -1,7 +1,7 @@
 const express = require("express")
 const router = express.Router()
 // import songs queries functions
-const { getAllSongs, getOneSong, createSong, } = require("../queries/songs.js")
+const { getAllSongs, getOneSong, createSong, deleteSong, } = require("../queries/songs.js")
 // validation
 const { checkAllSchema, validationError, schemaCheck } = require("../validations/schema-check.js")
 
@@ -9,7 +9,7 @@ const { checkAllSchema, validationError, schemaCheck } = require("../validations
 router.get("/", async (req, resp) => {
     const songs = await getAllSongs()
     
-    songs[0] ? resp.status(200).json(songs) : resp.status(500).json({ error: "server error" });
+    songs[0] ? resp.status(200).json(songs) : resp.status(500).json({ error: "Server Error" });
 })
 
 // Show Data
@@ -32,6 +32,14 @@ router.post("/", schemaCheck, validationError, async (req, resp) => {
     const newSong = await createSong(req.body)
     
     newSong.id ? resp.status(200).json(newSong) : resp.status(500).json({ error: "Server Error" })
+})
+
+// DELETE ROUTE 
+router.delete("/:id", async (req, resp) => {
+    const {id} = req.params
+    const deletedSong = await deleteSong(id)
+
+    deletedSong.id ? resp.status(200).json(deletedSong) : resp.status(500).json({ error: "Server Error" })
 })
 
 
