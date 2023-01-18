@@ -5,7 +5,7 @@ const getAllSongs = async () => {
   try {
     // db.any() function takes first str as arg,
     // .any = means it will accept any return from database
-    const allSongs = await db.any("SELECT * FROM songs")
+    const allSongs = await db.any("SELECT * FROM songs returning")
     return allSongs
   } catch (error) {
     return error
