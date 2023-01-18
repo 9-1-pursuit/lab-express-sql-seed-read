@@ -18,7 +18,6 @@
   "bugs": {
     "url": "https://github.com/joinpursuit/tuner-full-stack-app/issues"
   },
-  "homepage": "https://github.com/joinpursuit/tuner-full-stack-app#readme",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
@@ -27,5 +26,7 @@
     "pg-promise": "^11.0.2",
     "supertest": "^6.2.0"
   },
-  "devDependencies": {}
+  "homepage": "https://github.com/joinpursuit/tuner-full-stack-app#readme",
+  "devDependencies": {},
+  "keywords": []
 }
