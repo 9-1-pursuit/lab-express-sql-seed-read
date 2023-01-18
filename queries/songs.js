@@ -34,7 +34,7 @@ async function createSong(obj) {
     }
 }
 
-// DELETE A SONG -> .one() -> use DELETE FROM, WHERE and RETURNING keyword to get 
+// DELETE A SONG -> .one() -> use DELETE FROM, WHERE and RETURNING keyword 
 async function deleteSong(idValue) {
     try{
         const deletedSong = await database.one('DELETE FROM songs WHERE id = $1 RETURNING *', idValue)
