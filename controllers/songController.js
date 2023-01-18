@@ -3,6 +3,7 @@ const songs = express.Router()
 const { getAllSongs } = require("../queries/songs")
 
 // Index
+// importing array of songs from database
 songs.get("/", async (req, res) => {
   const allSongs = await getAllSongs()
   if (allSongs[0]) {

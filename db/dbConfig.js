@@ -1,4 +1,6 @@
-// connection for data
+// pg-promise is postgres promise-based node.js client for PostgreSQL
+// provide easy way connection to the database
+
 const pgp = require("pg-promise")()
 require("dotenv").config()
 
@@ -10,7 +12,7 @@ const cn = {
   user: process.env.PG_USER,
 }
 
-// connecting  server with the database
+// connecting server with the database
 const db = pgp(cn)
 
 module.exports = db
