@@ -4,6 +4,7 @@ CREATE DATABASE seed_dev;
 \c seed_dev;
 
 CREATE TABLE seed (
+ id SERIAL PRIMARY KEY,
  name TEXT NOT NULL,
  artist TEXT NOT NULL,
  album TEXT,
