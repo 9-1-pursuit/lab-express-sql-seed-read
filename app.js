@@ -1,7 +1,7 @@
 // DEPENDENCIES / IMPORTS
 const cors = require("cors");
 const express = require("express");
-const songsController = require("./controllers/songController")
+const songController = require("./controllers/songController")
 
 // CONFIGURATION
 const app = express();
@@ -11,7 +11,7 @@ app.use(cors());
 app.use(express.json());
 
 // Songs ROUTES
-app.use("/songs", songsController);
+app.use("/songs", songController);
 
 // ROUTES
 app.get("/", (req, res) => {
