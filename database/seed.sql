@@ -9,5 +9,5 @@ INSERT INTO songs (name, artist, album, time, is_favorite) VALUES
 
 /* 
      -Run this code in terminal to add data to your database: 
-    psql -U postgres -f database/seed.sql
+    npm run dbseed
  */

@@ -14,5 +14,5 @@ CREATE TABLE songs (
 
 /* 
      - Run this code in terminal to run schema file :
-    psql -U postgres -f database/schema.sql
+    npm run dbinit
  */
