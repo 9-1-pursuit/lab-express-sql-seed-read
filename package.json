@@ -10,7 +10,7 @@
     "dev": "nodemon server.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Destiny J.",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
