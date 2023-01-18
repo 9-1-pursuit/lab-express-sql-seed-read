@@ -10,4 +10,4 @@ CREATE TABLE songs (
     album TEXT,
     time TEXT,
     is_favorite BOOLEAN
-)
+);
