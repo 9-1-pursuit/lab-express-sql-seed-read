@@ -6,7 +6,7 @@ const { getAllSongs } = require(`../queries/songs`)
 songs.get("/", async (req, res) => {
   const allSongs = await getAllSongs()
   if (allSongs[0]) {
-    res.statues(200).json(allSongs)
+    res.status(200).json(allSongs)
   } else res.status(500).json({ error: "server error" })
 })
 
