@@ -10,7 +10,6 @@ songs.get("/", async (req, res) => {
   } else {
     res.status(500).json({ error: "Server Error" });
   }
-//   res.json({status:"OK"})
 });
 
 module.exports = songs;
