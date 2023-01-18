@@ -21,7 +21,7 @@ async function getOneSong(idValue) {
     }
 }
 
-// Create/ add new song object -> .one() with RETURNING keyword to return the inserted row/obj
+// Create/ add new song object -> .one() use INSERT INTO, VALUES keywords with RETURNING keyword to return the inserted row/obj
 async function createSong(obj) {
     try {
         const newSong = await database.one(
@@ -34,11 +34,22 @@ async function createSong(obj) {
     }
 }
 
-// DELETE A SONG -> .one() -> use RETURNING keyword to get deleted row returned
+// DELETE A SONG -> .one() -> use DELETE FROM, WHERE and RETURNING keyword to get 
 async function deleteSong(idValue) {
     try{
         const deletedSong = await database.one('DELETE FROM songs WHERE id = $1 RETURNING *', idValue)
         return deletedSong
+    } catch(err) {
+        return err
+    }
+}
+
+// UPDATE/ EDIT A SONG (idValue, updatedObj)-> .one() -> use UPDATE, SET, WHERE and RETURNING keywords
+async function updateSong(idValue, updatedObj) {
+    try {
+        const updatedSong = database.one('UPDATE songs SET name = $2, artist = $3, album = $4, time = $5, is_favorite = $6 WHERE id = $1 RETURNING *', [idValue, updatedObj.name, updatedObj.artist, updatedObj.album, updatedObj.time, updatedObj.is_favorite])
+
+        return updatedSong
     } catch(err) {
         return err
     }
@@ -51,4 +62,5 @@ module.exports = {
     getOneSong,
     createSong,
     deleteSong,
+    updateSong,
 }
