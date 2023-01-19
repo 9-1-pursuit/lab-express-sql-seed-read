@@ -22,14 +22,16 @@ const getSong = async (id) => {
     return error
   }
 }
-  // CREATE
-     const createSong = async ()=>{
-      try {
-        const createOneSong = await db.one ("INSERT INTO songs (name, artist, album, time, is_favorite) VALUES($1, $2, $3, $$) RETURNING *'
-      [songs.name, songs.artist, songs.album, songs.time, songs.is_favorite])
-      } catch (error) {
-        return error
-      }
-     }
+// CREATE
+const createSong = async () => {
+  try {
+    const createOneSong = await db.one(
+      "INSERT INTO songs (name, artist, album, time, is_favorite) VALUES($1, $2, $3, $$) RETURNING *",
+      [songs.name, songs.artist, songs.album, songs.time, songs.is_favorite]
+    )
+  } catch (error) {
+    return error
+  }
+}
 
 module.exports = { getAllSongs, getSong, createSong }
