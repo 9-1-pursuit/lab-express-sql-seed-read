@@ -27,6 +27,22 @@ const checkBoolean = (req, res, next) => {
     }
   };
   // CHECK for time 
+  const checkTime = (req,res, next) =>{
+    const time = req.body.time
+    if (time.length >=4 ){
+      return next()
+    }else {
+      res.status(404).json({erro: 'Time bust look like this 3:19'})
+    }
+  }
+  // CHECK FOR ALBUM
+  const checkAlbum = (req, res, next) => {
+    if (req.body.album) {
+      next();
+    } else {
+      res.status(400).json({ error: "Please enter a value!" });
+    }
+  };
   
-  module.exports = { checkName, checkArtist,checkBoolean  };
+  module.exports = { checkName, checkArtist,checkBoolean, checkTime, checkAlbum  };
   
