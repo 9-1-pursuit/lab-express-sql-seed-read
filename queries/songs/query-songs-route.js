@@ -1,4 +1,4 @@
-const database = require("../database/databaseConfig.js")
+const database = require("../../database/databaseConfig.js")
 
 //  BONUS ASC/DESC QUERIES
 async function getQueriedSongs(obj) {

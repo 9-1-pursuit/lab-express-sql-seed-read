@@ -1,22 +1,19 @@
 const express = require("express")
 const router = express.Router()
 // import songs queries functions
-const { 
-    getAllSongs, 
-    getOneSong, 
-    deleteSong, 
-     } = require("../queries/songs.js")
-const { getQueriedSongs } = require("../queries/query-songs-route.js")
-const { createSong } = require("../queries/create.js")
-const { updateSong } = require("../queries/update.js")
+const { getAllSongs } = require("../queries/songs/all.js")
+const { getQueriedSongs } = require("../queries/songs/query-songs-route.js")
+const { getOneSong } = require("../queries/songs/show.js")
+const { createSong } = require("../queries/songs/create.js")
+const { deleteSong } = require("../queries/songs/delete.js")
+const { updateSong } = require("../queries/songs/update.js")
 // validation
-const { 
-    validationError, 
-    schemaCheck } = require("../validations/schema-check.js")
+const { validationError, schemaCheck } = require("../validations/schema-check.js")
 
-// Get All Data (added query bonus)
+// ROUTES for /songs
+
+// ALL / QUERY ROUTE
 router.get("/", async (req, resp) => {
-    // add query bonuses
     const query = req.query
 
     if(Object.keys(query).length){
@@ -31,7 +28,7 @@ router.get("/", async (req, resp) => {
     }
 })
 
-// Show Data
+// SHOW ROUTE (ONE SONG)
 router.get("/:id", async (req, resp) => {
     const {id} = req.params
     const song = await getOneSong(id)
@@ -64,8 +61,5 @@ router.put("/:id", schemaCheck, validationError, async (req, resp)=> {
 
     updatedSong.id ? resp.status(200).json(updatedSong) : resp.status(500).json({ error: "Server Error" })
 })
-
-
-
 
 module.exports = router
