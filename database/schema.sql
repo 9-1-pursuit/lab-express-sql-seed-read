@@ -9,7 +9,7 @@ CREATE TABLE songs (
     artist TEXT NOT NULL,
     album TEXT DEFAULT 'Unknown',
     time TEXT DEFAULT 'Unknown',
-    is_favorite BOOL DEFAULT FALSE
+    is_favorite BOOL
 )
 
 /* 
