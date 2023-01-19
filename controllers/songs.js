@@ -4,11 +4,11 @@ const router = express.Router()
 const { 
     getAllSongs, 
     getOneSong, 
-    createSong, 
     deleteSong, 
-    updateSong, 
      } = require("../queries/songs.js")
-const { getQueriedSongs } = require("../queries/queriedSongs.js")
+const { getQueriedSongs } = require("../queries/query-songs-route.js")
+const { createSong } = require("../queries/create.js")
+const { updateSong } = require("../queries/update.js")
 // validation
 const { 
     validationError, 

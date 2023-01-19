@@ -66,57 +66,57 @@ async function getOneSong(idValue) {
 }
 
 // Create/ add new song object -> .one() use INSERT INTO, VALUES keywords with RETURNING keyword to return the inserted row/obj
-async function createSong(obj) {
-    // add conditionals to check req.body for key/column values in order to alter the sql command and if ommitted, the DEFAULT value in schema will be applied instead of NULL
+// async function createSong(obj) {
+//     // add conditionals to check req.body for key/column values in order to alter the sql command and if ommitted, the DEFAULT value in schema will be applied instead of NULL
     
-    if(!obj.album && !obj.time){
-        try {
-            const newSong = await database.one(
-            'INSERT INTO songs(name, artist, is_favorite) VALUES ($1, $2, $3) RETURNING *', 
-            [obj.name, obj.artist, obj.is_favorite]
-            )
-            return newSong
-        } catch(err) {
-            return err
-        }
-    }
-    else if(!obj.album || !obj.time){
-        if(!obj.album){
-            try {
-                const newSong = await database.one(
-                'INSERT INTO songs(name, artist, time, is_favorite) VALUES ($1, $2, $3, $4) RETURNING *', 
-                [obj.name, obj.artist, obj.time, obj.is_favorite]
-                )
-                return newSong
-            } catch(err) {
-                return err
-            }
-        }
-        else if(!obj.time){
-            try {
-                const newSong = await database.one(
-                'INSERT INTO songs(name, artist, album, is_favorite) VALUES ($1, $2, $3, $4) RETURNING *', 
-                [obj.name, obj.artist, obj.album, obj.is_favorite]
-                )
-                return newSong
-            } catch(err) {
-                return err
-            }
-        }
-    }
-    else{
-        try {
-            const newSong = await database.one(
-            'INSERT INTO songs(name, artist, album, time, is_favorite) VALUES ($1, $2, $3, $4, $5) RETURNING *', 
-            [obj.name, obj.artist, obj.album, obj.time, obj.is_favorite]
-            )
-            return newSong
-        } catch(err) {
-            return err
-        }
-    }
+//     if(!obj.album && !obj.time){
+//         try {
+//             const newSong = await database.one(
+//             'INSERT INTO songs(name, artist, is_favorite) VALUES ($1, $2, $3) RETURNING *', 
+//             [obj.name, obj.artist, obj.is_favorite]
+//             )
+//             return newSong
+//         } catch(err) {
+//             return err
+//         }
+//     }
+//     else if(!obj.album || !obj.time){
+//         if(!obj.album){
+//             try {
+//                 const newSong = await database.one(
+//                 'INSERT INTO songs(name, artist, time, is_favorite) VALUES ($1, $2, $3, $4) RETURNING *', 
+//                 [obj.name, obj.artist, obj.time, obj.is_favorite]
+//                 )
+//                 return newSong
+//             } catch(err) {
+//                 return err
+//             }
+//         }
+//         else if(!obj.time){
+//             try {
+//                 const newSong = await database.one(
+//                 'INSERT INTO songs(name, artist, album, is_favorite) VALUES ($1, $2, $3, $4) RETURNING *', 
+//                 [obj.name, obj.artist, obj.album, obj.is_favorite]
+//                 )
+//                 return newSong
+//             } catch(err) {
+//                 return err
+//             }
+//         }
+//     }
+//     else{
+//         try {
+//             const newSong = await database.one(
+//             'INSERT INTO songs(name, artist, album, time, is_favorite) VALUES ($1, $2, $3, $4, $5) RETURNING *', 
+//             [obj.name, obj.artist, obj.album, obj.time, obj.is_favorite]
+//             )
+//             return newSong
+//         } catch(err) {
+//             return err
+//         }
+//     }
    
-}
+// }
 
 // DELETE A SONG -> .one() -> use DELETE FROM, WHERE and RETURNING keyword 
 async function deleteSong(idValue) {
@@ -129,62 +129,60 @@ async function deleteSong(idValue) {
 }
 
 // UPDATE/ EDIT A SONG (idValue, updatedObj)-> .one() -> use UPDATE, SET, WHERE and RETURNING keywords
-async function updateSong(idValue, updatedObj) {
-    if(!updatedObj.album && !updatedObj.time){
-        try {
-            const newSong = await database.one(
-            'INSERT INTO songs(name, artist, is_favorite) VALUES ($1, $2, $3) RETURNING *', 
-            [updatedObj.name, updatedObj.artist, updatedObj.is_favorite]
-            )
-            return newSong
-        } catch(err) {
-            return err
-        }
-    }
-    else if(!updatedObj.album || !updatedObj.time){
-        if(!updatedObj.album){
-            try {
-                const newSong = await database.one(
-                'INSERT INTO songs(name, artist, time, is_favorite) VALUES ($1, $2, $3, $4) RETURNING *', 
-                [updatedObj.name, updatedObj.artist, updatedObj.time, updatedObj.is_favorite]
-                )
-                return newSong
-            } catch(err) {
-                return err
-            }
-        }
-        else if(!updatedObj.time){
-            try {
-                const newSong = await database.one(
-                'INSERT INTO songs(name, artist, album, is_favorite) VALUES ($1, $2, $3, $4) RETURNING *', 
-                [updatedObj.name, updatedObj.artist, updatedObj.album, updatedObj.is_favorite]
-                )
-                return newSong
-            } catch(err) {
-                return err
-            }
-        }
-    }
-    else {
-        try {
-            const updatedSong = database.one('UPDATE songs SET name = $2, artist = $3, album = $4, time = $5, is_favorite = $6 WHERE id = $1 RETURNING *', [idValue, updatedObj.name, updatedObj.artist, updatedObj.album, updatedObj.time, updatedObj.is_favorite])
+// async function updateSong(idValue, updatedObj) {
+//     if(!updatedObj.album && !updatedObj.time){
+//         try {
+//             const newSong = await database.one(
+//             'INSERT INTO songs(name, artist, is_favorite) VALUES ($1, $2, $3) RETURNING *', 
+//             [updatedObj.name, updatedObj.artist, updatedObj.is_favorite]
+//             )
+//             return newSong
+//         } catch(err) {
+//             return err
+//         }
+//     }
+//     else if(!updatedObj.album || !updatedObj.time){
+//         if(!updatedObj.album){
+//             try {
+//                 const newSong = await database.one(
+//                 'INSERT INTO songs(name, artist, time, is_favorite) VALUES ($1, $2, $3, $4) RETURNING *', 
+//                 [updatedObj.name, updatedObj.artist, updatedObj.time, updatedObj.is_favorite]
+//                 )
+//                 return newSong
+//             } catch(err) {
+//                 return err
+//             }
+//         }
+//         else if(!updatedObj.time){
+//             try {
+//                 const newSong = await database.one(
+//                 'INSERT INTO songs(name, artist, album, is_favorite) VALUES ($1, $2, $3, $4) RETURNING *', 
+//                 [updatedObj.name, updatedObj.artist, updatedObj.album, updatedObj.is_favorite]
+//                 )
+//                 return newSong
+//             } catch(err) {
+//                 return err
+//             }
+//         }
+//     }
+//     else {
+//         try {
+//             const updatedSong = database.one('UPDATE songs SET name = $2, artist = $3, album = $4, time = $5, is_favorite = $6 WHERE id = $1 RETURNING *', [idValue, updatedObj.name, updatedObj.artist, updatedObj.album, updatedObj.time, updatedObj.is_favorite])
     
-            return updatedSong
-        } catch(err) {
-            return err
-        }
+//             return updatedSong
+//         } catch(err) {
+//             return err
+//         }
 
-    }
+//     }
 
    
-}
+// }
 
 
 
 module.exports = {
     getAllSongs,
     getOneSong,
-    createSong,
     deleteSong,
-    updateSong,
 }
