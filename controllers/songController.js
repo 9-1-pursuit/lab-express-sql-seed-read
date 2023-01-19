@@ -38,6 +38,19 @@ songs.post("/", checkName, checkBoolean, checkArtist, async ( req, res ) => {
 }
 })
 
+// DESTROY
+songs.delete("/:id", async (req, res) => {
+    const { id } = req.params
+    try {
+        const deletedSong = await destroySong(id)
+        res.status(200).json(deletedSong)
+    } catch (error) {
+        res.status(404).json({ error: "id not found"})
+    }
+})
+
+// UPDATE
+
 
 
 module.exports = songs;
