@@ -1,6 +1,7 @@
 \c songs_dev;
 
-INSERT INTO songs (id, name, artist, album, time, is_favorite) VALUES
+INSERT INTO songs (name, artist, album, time, is_favorite) VALUES
 
-(1,'Happy', 'Pharelle', 'Happy','3.55', true),
-(2,'Blind', 'Sza', 'SOS','2.30', true)
+('Happy', 'Pharelle', 'Happy','3.55', true),
+('Blind', 'Sza', 'SOS','2.30', true),
+('Sunshine', 'Tyga', 'Sunshine','3.08', true);
