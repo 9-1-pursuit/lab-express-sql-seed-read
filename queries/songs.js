@@ -1,3 +1,5 @@
+const songs = require("../controllers/songController")
+const { one } = require("../db/dbConfig")
 const db = require("../db/dbConfig")
 
 // async function call the data
@@ -11,4 +13,23 @@ const getAllSongs = async () => {
     return error
   }
 }
-module.exports = { getAllSongs }
+// ONE - SHOW
+const getSong = async (id) => {
+  try {
+    const getOneSong = await db.one("SELECT * FROM songs WHERE id=$1", id)
+    return getOneSong
+  } catch (error) {
+    return error
+  }
+}
+  // CREATE
+     const createSong = async ()=>{
+      try {
+        const createOneSong = await db.one ("INSERT INTO songs (name, artist, album, time, is_favorite) VALUES($1, $2, $3, $$) RETURNING *'
+      [songs.name, songs.artist, songs.album, songs.time, songs.is_favorite])
+      } catch (error) {
+        return error
+      }
+     }
+
+module.exports = { getAllSongs, getSong, createSong }
