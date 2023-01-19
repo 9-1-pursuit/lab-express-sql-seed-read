@@ -1,15 +1,25 @@
 const express = require("express")
 const router = express.Router()
 // import songs queries functions
-const { getAllSongs, getOneSong, createSong, deleteSong, updateSong } = require("../queries/songs.js")
+const { getAllSongs, getOneSong, createSong, deleteSong, updateSong, getQueriedSongs, } = require("../queries/songs.js")
 // validation
 const { checkAllSchema, validationError, schemaCheck } = require("../validations/schema-check.js")
 
 // Get All Data
 router.get("/", async (req, resp) => {
-    const songs = await getAllSongs()
-    
-    songs[0] ? resp.status(200).json(songs) : resp.status(500).json({ error: "Server Error" });
+    // add query bonuses
+    const query = req.query
+    console.log(query)
+    if(Object.keys(query).length){
+        const queriedSongs = await getQueriedSongs(query)
+        
+        queriedSongs[0] ? resp.status(200).json(queriedSongs) : resp.status(404).json({Error: "incorrect query values"})
+    }
+    else{
+        const songs = await getAllSongs()
+        
+        songs[0] ? resp.status(200).json(songs) : resp.status(500).json({ error: "Server Error" });
+    }
 })
 
 // Show Data

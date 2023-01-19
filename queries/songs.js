@@ -11,6 +11,29 @@ async function getAllSongs() {
     }
 }
 
+//  BONUS ASC/DESC QUERIES
+async function getQueriedSongs(obj) {
+    if(obj.order){
+        if(obj.order === "asc"){
+            try{
+                const ascOrder = await database.any('SELECT * FROM songs ORDER BY name ASC') 
+                return ascOrder
+            } catch(err){
+                return err
+            }
+        }
+        if(obj.order === "desc"){
+            try{
+                const descOrder = await database.any('SELECT * FROM songs ORDER BY name DESC') 
+                return descOrder
+            } catch(err){
+                return err
+            }
+
+        }
+    }
+}
+
 // Get one specific song based on id -> database.one() -> $1 (for substituting variables)
 async function getOneSong(idValue) {
     try {
@@ -63,4 +86,5 @@ module.exports = {
     createSong,
     deleteSong,
     updateSong,
+    getQueriedSongs,
 }
