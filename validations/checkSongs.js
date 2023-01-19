@@ -16,8 +16,7 @@ const checkArtist = (req, res, next) => {
 
 const checkFav = (req, res, next) => {
   if (
-    typeof req.body.is_favorite === true ||
-    typeof req.body.is_favorite === false ||
+    typeof req.body.is_favorite === "boolean" ||
     typeof req.body.is_favorite === undefined
   ) {
     next();
