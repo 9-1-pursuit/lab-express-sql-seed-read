@@ -22,7 +22,7 @@ async function getQueriedSongs(obj) {
                 return err
             }
         }
-        if(obj.order === "desc"){
+        else if(obj.order === "desc"){
             try{
                 const descOrder = await database.any('SELECT * FROM songs ORDER BY name DESC') 
                 return descOrder
@@ -31,6 +31,27 @@ async function getQueriedSongs(obj) {
             }
 
         }
+    }
+    if(obj.is_favorite){
+        if(obj.is_favorite === "true"){
+          try{
+            const isFavorite = await database.any('SELECT * FROM songs WHERE is_favorite = true')
+            return isFavorite
+          } catch(err){
+            return err
+          }
+        }
+        else if(obj.is_favorite === "false"){
+            try{
+              const isNotFavorite = await database.any('SELECT * FROM songs WHERE is_favorite = false')
+              return isNotFavorite
+            } catch(err){
+              return err
+            }
+          }
+    }
+    else{
+        return undefined
     }
 }
 
@@ -46,6 +67,7 @@ async function getOneSong(idValue) {
 
 // Create/ add new song object -> .one() use INSERT INTO, VALUES keywords with RETURNING keyword to return the inserted row/obj
 async function createSong(obj) {
+    // add conditionals to check req.body for key/column values in order to alter the sql command and if ommitted, the DEFAULT value in schema will be applied instead of NULL
     try {
         const newSong = await database.one(
         'INSERT INTO songs(name, artist, album, time, is_favorite) VALUES ($1, $2, $3, $4, $5) RETURNING *', 

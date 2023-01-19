@@ -16,23 +16,8 @@ const validationError = (req, resp, next) => {
     next()
 }
 
-// custom validation without express-validator
-const checkAllSchema = (req, resp, next) => {
-    const body = req.body
-    const {name, artist, album, time} = body
-    const favorite = body.is_favorite
-
-    if(!name || !artist || typeof favorite !== "boolean"){
-        resp.status(400).json({
-            Error: "Missing required inputs name, artist, or is_favorite"
-        })
-    }
-    next()
-}
-
 
 module.exports = {
-    checkAllSchema,
     validationError,
     schemaCheck,
 }

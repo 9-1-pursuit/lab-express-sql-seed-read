@@ -4,12 +4,12 @@ CREATE DATABASE songs_dev;
 \c songs_dev;
 
 CREATE TABLE songs (
-    id serial,
+    id serial PRIMARY KEY,
     name TEXT NOT NULL,
     artist TEXT NOT NULL,
-    album TEXT,
-    time TEXT,
-    is_favorite BOOL
+    album TEXT DEFAULT 'Unknown',
+    time TEXT DEFAULT 'Unknown',
+    is_favorite BOOL DEFAULT FALSE
 )
 
 /* 

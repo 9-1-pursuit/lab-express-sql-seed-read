@@ -1,19 +1,27 @@
 const express = require("express")
 const router = express.Router()
 // import songs queries functions
-const { getAllSongs, getOneSong, createSong, deleteSong, updateSong, getQueriedSongs, } = require("../queries/songs.js")
+const { 
+    getAllSongs, 
+    getOneSong, 
+    createSong, 
+    deleteSong, 
+    updateSong, 
+    getQueriedSongs } = require("../queries/songs.js")
 // validation
-const { checkAllSchema, validationError, schemaCheck } = require("../validations/schema-check.js")
+const { 
+    validationError, 
+    schemaCheck } = require("../validations/schema-check.js")
 
-// Get All Data
+// Get All Data (added query bonus)
 router.get("/", async (req, resp) => {
     // add query bonuses
     const query = req.query
-    console.log(query)
+
     if(Object.keys(query).length){
         const queriedSongs = await getQueriedSongs(query)
         
-        queriedSongs[0] ? resp.status(200).json(queriedSongs) : resp.status(404).json({Error: "incorrect query values"})
+        !queriedSongs ? resp.status(404).json({Error: "incorrect query values"}) : resp.status(200).json(queriedSongs)
     }
     else{
         const songs = await getAllSongs()
@@ -30,15 +38,10 @@ router.get("/:id", async (req, resp) => {
     song.id ? resp.json(song) : resp.redirect("/*")
 })
 
-// Create (POST) data
-// pass req.body as obj for argument in createSong function
-// router.post("/", checkAllSchema, async (req, resp) => {
-//     const newSong = await createSong(req.body)
-//     newSong.id ? resp.status(200).json(newSong) :  resp.status(400).json({ error: error })
-// })
-
-// CREATE(POST) using express-validator functionality
-// pass req.body as obj for argument in createSong function
+/* 
+    - CREATE(POST) using express-validator functionality
+    - pass req.body as obj for argument in createSong function 
+*/
 router.post("/", schemaCheck, validationError, async (req, resp) => {
     const newSong = await createSong(req.body)
     
