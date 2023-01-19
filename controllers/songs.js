@@ -7,7 +7,8 @@ const {
     createSong, 
     deleteSong, 
     updateSong, 
-    getQueriedSongs } = require("../queries/songs.js")
+     } = require("../queries/songs.js")
+const { getQueriedSongs } = require("../queries/queriedSongs.js")
 // validation
 const { 
     validationError, 
