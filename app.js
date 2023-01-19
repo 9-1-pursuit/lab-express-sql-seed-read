@@ -1,12 +1,15 @@
 //Dependencies
 const express = require('express')
-const app = express()
 const cors = require('cors')
 const songsController = require('./controllers/songController')
+
+//Config
+const app = express()
 
 //Middleware
 app.use(cors())
 app.use(express.json())
+//Songs Routes
 app.use('/songs', songsController)
 
 //Routes
