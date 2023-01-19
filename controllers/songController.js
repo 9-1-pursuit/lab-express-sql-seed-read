@@ -1,6 +1,6 @@
 const express = require("express");
 const songs = express.Router();
-const { getAllSongs, getSong, createSong } = require("../queries/songs")
+const { getAllSongs, getSong, createSong, destroySong } = require("../queries/songs")
 const { checkName, checkBoolean, checkArtist } = require("../validations/checkSongs.js")
 
 // INDEX

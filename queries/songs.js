@@ -32,4 +32,13 @@ const createSong = async (song) => {
     }
 }
 
-module.exports = { getAllSongs, getSong, createSong }
+const destroySong = async (id) => {
+    try {
+        const deletedSong = await db.one("DELETE FROM seed WHERE id=$1 RETURNING *", id)
+        return deletedSong
+    } catch (error) {
+        return error
+    }
+}
+
+module.exports = { getAllSongs, getSong, createSong, destroySong }
