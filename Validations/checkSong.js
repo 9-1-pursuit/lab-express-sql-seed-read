@@ -26,6 +26,7 @@ const checkBoolean = (req, res, next) => {
       res.status(400).json({ error: "is_favorite must be a boolean value" });
     }
   };
+  // CHECK for time 
   
   module.exports = { checkName, checkArtist,checkBoolean  };
   
