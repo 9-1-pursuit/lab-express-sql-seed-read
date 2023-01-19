@@ -49,4 +49,9 @@ const deleteSong = async (id) => {
 }
 
 // Update route
+const updatedSong = async(id, songs)=>{
+  try{
+    const updateSongs = await db.one("Update songs SET name=$1, ")
+  } 
+}
 module.exports = { getAllSongs, getSong, createSong, deleteSong }
