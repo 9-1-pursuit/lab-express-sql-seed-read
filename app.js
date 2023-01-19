@@ -1,7 +1,7 @@
 // DEPENDENCIES
 const cors = require("cors")
 const express = require("express")
-const songController = require("./controllers/songController")
+const songController = require("./controllers/songController.js")
 
 // CONFIGURATION
 const app = express()
@@ -21,5 +21,4 @@ app.get("/", (req, res) => {
   res.status(404).send("Page not Found")
 })
 
-// EXPORT
 module.exports = app

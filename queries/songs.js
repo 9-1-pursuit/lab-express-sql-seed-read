@@ -22,16 +22,31 @@ const getSong = async (id) => {
     return error
   }
 }
-// CREATE
-const createSong = async () => {
+// CREATE route
+const createSong = async (songs) => {
   try {
     const createOneSong = await db.one(
       "INSERT INTO songs (name, artist, album, time, is_favorite) VALUES($1, $2, $3, $$) RETURNING *",
       [songs.name, songs.artist, songs.album, songs.time, songs.is_favorite]
     )
+    return createOneSong
   } catch (error) {
     return error
   }
 }
 
-module.exports = { getAllSongs, getSong, createSong }
+//DELETE route
+const deleteSong = async (id) => {
+  try {
+    const deletedOneSong = await db.one(
+      "DELETE FROM songs WHERE id=$1 RETURNING *",
+      id
+    )
+    return deletedOneSong
+  } catch (error) {
+    return error
+  }
+}
+
+// Update route
+module.exports = { getAllSongs, getSong, createSong, deleteSong }
