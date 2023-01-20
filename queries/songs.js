@@ -54,13 +54,30 @@ const updateSong = async (id, song) => {
   }
 };
 
-const sortSongs = async (order) => {
+const filterAndSort = async (filter, order) => {
   try {
+    if (filter === undefined) {
+      if (order.toUpperCase() === "ASC") {
+        return await db.any("SELECT * FROM songs ORDER BY name ASC");
+      }
+      if (order.toUpperCase() === "DESC") {
+        return await db.any("SELECT * FROM songs ORDER BY name DESC");
+      }
+    }
+    if (order === undefined) {
+      return await db.any("SELECT * FROM songs WHERE is_favorite=$1", filter);
+    }
     if (order.toUpperCase() === "ASC") {
-      return await db.any("SELECT * FROM songs ORDER BY name ASC");
+      return await db.any(
+        "SELECT * FROM songs WHERE is_favorite=$1 ORDER BY name ASC",
+        filter
+      );
     }
     if (order.toUpperCase() === "DESC") {
-      return await db.any("SELECT * FROM songs ORDER BY name DESC");
+      return await db.any(
+        "SELECT * FROM songs WHERE is_favorite=$1 ORDER BY name DESC",
+        filter
+      );
     }
   } catch (error) {
     return error;
@@ -73,5 +90,5 @@ module.exports = {
   createSong,
   deleteSong,
   updateSong,
-  sortSongs,
+  filterAndSort,
 };

@@ -6,26 +6,24 @@ const {
   createSong,
   deleteSong,
   updateSong,
-  sortSongs,
+  filterAndSort,
 } = require("../queries/songs");
 const { checkInput } = require("../validations/checkSong");
 
 // Index
 songs.get("/", async (req, res) => {
   const allSongs = await getAllSongs();
-  const { order, is_favorite } = req.query;
+  const { is_favorite, order } = req.query;
   if (allSongs[0]) {
-    if (order) {
-      const sortedSongs = await sortSongs(order);
-      res.status(200).json(sortedSongs);
+    if (is_favorite || order) {
+      const filteredSorted = await filterAndSort(is_favorite, order);
+      res.status(200).json(filteredSorted);
     } else {
       res.status(200).json(allSongs);
     }
   } else {
     res.status(500).json({ error: "server error" });
   }
-
-  // res.status(200).json({ status: "ok" });
 });
 
 // Show
