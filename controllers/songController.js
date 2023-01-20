@@ -27,7 +27,7 @@ songs.get("/", async (req, res) => {
 songs.get("/:id", async (req, res) => {
   const { id } = req.params
   const song = await getSong(id)
-  song === true ? res.json(song) : res.status(404).json({ error: "Not Found" })
+  song === true ? res.json(song) : redirect("/")
 })
 
 //CREATE
