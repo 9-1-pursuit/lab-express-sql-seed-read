@@ -51,7 +51,7 @@ songs.delete("/:id", async (req, res) => {
   try {
     const { id } = req.params
     const deletedSong = await deleteSong(id)
-    res.status(200).res.json({ error: "error" })
+    res.status(200).res.json({ error: "Sorry song Not Found" })
   } catch (error) {}
 })
 
@@ -67,7 +67,7 @@ songs.put(
       const updateSongs = await updatedSong(id, req.body)
       res.status(200).json(updateSongs)
     } catch (error) {
-      res.status(500).json({ error: "error" })
+      res.status(500).json({ error: "There is error" })
     }
   }
 )
