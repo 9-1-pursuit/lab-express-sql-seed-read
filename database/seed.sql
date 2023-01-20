@@ -8,6 +8,13 @@ INSERT INTO songs (name, artist, album, time, is_favorite) VALUES
 ('Call Me Irresponsible', 'Bobby Darin', 'Hello Dolly to Goodbye Charlie', '2:06', TRUE ),
 ('Fast Car', 'Tracy Chapman', 'Tracy Chapman', '4:57', TRUE);
 
+INSERT INTO albums (album_name) VALUES
+('Thriller'),
+('On How Life Is'),
+('They Might Be Giants'),
+('Get Ready!'),
+('Hello Dolly to Goodbye Charlie'),
+('Tracy Chapman');
 /* 
      -Run this code in terminal to add data to your database: 
     npm run dbseed

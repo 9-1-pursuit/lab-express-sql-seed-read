@@ -10,6 +10,11 @@ CREATE TABLE songs (
     album TEXT DEFAULT 'Unknown',
     time TEXT DEFAULT 'Unknown',
     is_favorite BOOL
+);
+
+CREATE TABLE albums (
+    album_id serial PRIMARY KEY,
+    album_name TEXT
 )
 
 /* 
