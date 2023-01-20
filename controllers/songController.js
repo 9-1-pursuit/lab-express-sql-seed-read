@@ -1,7 +1,7 @@
 // DEPENDENCIES //
 const express = require("express");
 const songs = express.Router();
-const { getAllSongs } = require("../queries/songs");
+const { getAllSongs, getOneSong, createSong } = require("../queries/songs");
 
 // ROUTES //
 
@@ -15,4 +15,30 @@ songs.get("/", async (req, res) => {
   }
 });
 
+// SHOW
+songs.get("/:id", async (req, res) => {
+  const { id } = req.params;
+  const song = await getOneSong(id);
+  try {
+    if (song.id) {
+      res.status(200).json(song);
+    } else {
+      res.status(404).json({ error: "not-found" });
+    }
+  } catch (error) {
+    return error;
+  }
+});
+
+// CREATE
+songs.post("/", async (req, res) => {
+  try {
+    const makeSong = await createSong(req.body);
+    res.status(200).json(makeSong);
+  } catch (error) {
+    res.status(400).json({ error: error });
+  }
+});
+
+// EXPORT //
 module.exports = songs;

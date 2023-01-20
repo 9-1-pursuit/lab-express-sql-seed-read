@@ -13,7 +13,7 @@ app.use("/songs", songController);
 
 // ROUTES //
 app.get("/", (req, res) => {
-  res.send("Welcome to Turner");
+  res.send("Welcome to Tuner");
 });
 
 app.get("*", (req, res) => {
