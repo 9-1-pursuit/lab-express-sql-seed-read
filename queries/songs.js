@@ -54,4 +54,24 @@ const updateSong = async (id, song) => {
   }
 };
 
-module.exports = { getAllSongs, getSong, createSong, deleteSong, updateSong };
+const sortSongs = async (order) => {
+  try {
+    if (order.toUpperCase() === "ASC") {
+      return await db.any("SELECT * FROM songs ORDER BY name ASC");
+    }
+    if (order.toUpperCase() === "DESC") {
+      return await db.any("SELECT * FROM songs ORDER BY name DESC");
+    }
+  } catch (error) {
+    return error;
+  }
+};
+
+module.exports = {
+  getAllSongs,
+  getSong,
+  createSong,
+  deleteSong,
+  updateSong,
+  sortSongs,
+};

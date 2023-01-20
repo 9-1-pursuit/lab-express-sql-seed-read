@@ -6,14 +6,21 @@ const {
   createSong,
   deleteSong,
   updateSong,
+  sortSongs,
 } = require("../queries/songs");
 const { checkInput } = require("../validations/checkSong");
 
 // Index
 songs.get("/", async (req, res) => {
   const allSongs = await getAllSongs();
+  const { order, is_favorite } = req.query;
   if (allSongs[0]) {
-    res.status(200).json(allSongs);
+    if (order) {
+      const sortedSongs = await sortSongs(order);
+      res.status(200).json(sortedSongs);
+    } else {
+      res.status(200).json(allSongs);
+    }
   } else {
     res.status(500).json({ error: "server error" });
   }
@@ -28,7 +35,7 @@ songs.get("/:id", async (req, res) => {
   if (!song.message) {
     res.status(200).json(song);
   } else {
-    // res.status(404).json({ error: "not found" });
+    // res.status(404).json({ error: song.message });
     res.status(404).redirect("/not-found");
   }
 });
