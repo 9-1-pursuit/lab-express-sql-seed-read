@@ -1,7 +1,12 @@
 // DEPENDENCIES //
 const express = require("express");
 const songs = express.Router();
-const { getAllSongs, getOneSong, createSong } = require("../queries/songs");
+const {
+  getAllSongs,
+  getOneSong,
+  createSong,
+  deleteSong,
+} = require("../queries/songs");
 const {
   checkName,
   checkArtist,
@@ -42,6 +47,17 @@ songs.post("/", checkName, checkArtist, checkBoolean, async (req, res) => {
     res.status(200).json(makeSong);
   } catch (error) {
     res.status(400).json({ error: error });
+  }
+});
+
+// DELETE
+songs.delete("/:id", async (req, res) => {
+  const { id } = req.params;
+  const deletedSong = await deleteSong(id);
+  if (deletedSong.id) {
+    res.status(200).json(deletedSong);
+  } else {
+    res.status(404).json("Song not found");
   }
 });
 
