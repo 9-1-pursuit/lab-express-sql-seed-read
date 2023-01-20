@@ -25,4 +25,13 @@ const checkFav = (req, res, next) => {
   }
 };
 
+// const validateID = (req, res, next) => {
+//     const song = songs.findById(id);
+//     if (song) {
+//     next();
+//   } else {
+//     res.status(404).json({ error: "no song by that id exists" });
+//   }
+// };
+
 module.exports = { checkName, checkArtist, checkFav };
