@@ -5,7 +5,7 @@
 **.env**
 
 ```
-PORT=6000
+PORT=3345
 PG_HOST=localhost
 PG_PORT=5432
 PG_DATABASE=tuner
