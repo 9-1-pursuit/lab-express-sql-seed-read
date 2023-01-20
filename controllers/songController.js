@@ -42,19 +42,6 @@ songs.post("/", checkName, checkArtist, checkBoolean, async (req, res) => {
 });
 
 // DELETE
-// songs.delete("/:id", async (req, res) => {
-//   try{
-//     const { id } = req.params;
-//     const deletedSong = await deleteSong(id);
-//     console.log(deletedSong, deletedSong.id, id )
-//     if (deletedSong.id === id){
-//         res.status(200).json(deletedSong);
-//     }
-//   } catch (error) {
-//     res.status(404).json({error: "Song not found"});
-//   }
-// });
-
 songs.delete("/:id", async (req, res) => {
     try{
         const { id } = req.params;
