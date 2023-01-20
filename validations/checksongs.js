@@ -15,7 +15,9 @@ const checkArtist = (req, res, next) => {
 };
 
 const checkBoolean = (req, res, next) => {
-  // how to validate that the value of req.body.is_favorite is deeply equal to a boolean => if(typeof req.body.is_favorite === "boolean) also why didn't it work for the test"
+  //How to validate that the value of req.body.is_favorite is deeply equal to a boolean => if(typeof req.body.is_favorite === "boolean)
+
+  // Why didn't the above logic work for the test??
   if (req.body.is_favorite) {
     next();
   } else {

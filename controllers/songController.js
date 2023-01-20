@@ -63,7 +63,7 @@ songs.delete("/:id", async (req, res) => {
 });
 
 //UPDATE
-songs.put("/:id", async (req, res) => {
+songs.put("/:id", checkName, checkArtist, checkBoolean, async (req, res) => {
   const { id } = req.params;
   try {
     const updatedSong = await updateSong(id, req.body);
