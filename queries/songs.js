@@ -22,7 +22,7 @@ const getSong = async (id) => {
     return error
   }
 }
-// CREATE route
+// CREATE
 const createSong = async (songs) => {
   try {
     const createOneSong = await db.one(
@@ -35,7 +35,7 @@ const createSong = async (songs) => {
   }
 }
 
-//DELETE route
+//DELETE
 const deleteSong = async (id) => {
   try {
     const deletedOneSong = await db.one(
@@ -49,9 +49,15 @@ const deleteSong = async (id) => {
 }
 
 // Update route
-const updatedSong = async(id, songs)=>{
-  try{
-    const updateSongs = await db.one("Update songs SET name=$1, ")
-  } 
+const updatedSong = async (id, song) => {
+  try {
+    const updateSongs = await db.one(
+      "Update songs SET name = $1, artist = $2, album = $3, time = $4, is_favorite = $5, WHERE id=$6 RETURNING * ",
+      [song.name, song.artist, song.album, song.time, song.is_favorite, id]
+    )
+    return updateSongs
+  } catch (error) {
+    return error
+  }
 }
-module.exports = { getAllSongs, getSong, createSong, deleteSong }
+module.exports = { getAllSongs, getSong, createSong, deleteSong, updatedSong }
