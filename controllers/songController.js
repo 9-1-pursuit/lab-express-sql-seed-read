@@ -12,6 +12,7 @@ const {
   checkSongName,
   checkSongArtist,
   checkBoolean,
+  validateURL,
 } = require("../validations/checkSongs")
 
 // Index
@@ -36,6 +37,7 @@ songs.post(
   checkSongName,
   checkSongArtist,
   checkBoolean,
+  validateURL,
   async (req, res) => {
     try {
       const newSong = await createSong(req.body)
@@ -61,6 +63,7 @@ songs.put(
   checkBoolean,
   checkSongArtist,
   checkSongName,
+  validateURL,
   async (req, res) => {
     try {
       const { id } = req.params

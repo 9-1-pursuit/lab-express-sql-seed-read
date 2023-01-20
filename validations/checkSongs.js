@@ -22,4 +22,12 @@ const checkBoolean = (req, res, next) => {
         .status(400)
         .json({ error: "there must be a true or false value for is_favorite" })
 }
-module.exports = { checkSongName, checkSongArtist, checkBoolean }
+
+const validateURL = (req, res, next) => {
+  req.body.url.substring(0, 7) === "http://" ||
+  req.body.url.substring(0, 8) === "https://"
+    ? next()
+    : res.status(400).json({ error: "Missing/Error with http:// or https://" })
+}
+
+module.exports = { checkSongName, checkSongArtist, checkBoolean, validateURL }
