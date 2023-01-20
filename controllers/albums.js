@@ -7,7 +7,8 @@ const { getOneAlbum, getSongsFromAlbum } = require("../queries/albums/show.js")
 // GET ALL ALBUMS
 router.get("/", async (req, resp) => {
     const albums = await getAllAlbums()
-    resp.status(200).json(albums)
+
+    albums.length > 0 ? resp.status(200).json(albums) : resp.status(500).json({ error: "Server Error" });
 })
 
 // SHOW ROUTE (ONE ALBUM)
