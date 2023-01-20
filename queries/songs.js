@@ -54,4 +54,10 @@ const updateSong = async (id, song) => {
   }
 };
 
-module.exports = { getAllSongs, getOneSong, createSong, deleteSong };
+module.exports = {
+  getAllSongs,
+  getOneSong,
+  createSong,
+  deleteSong,
+  updateSong,
+};

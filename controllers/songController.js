@@ -6,6 +6,7 @@ const {
   getOneSong,
   createSong,
   deleteSong,
+  updateSong,
 } = require("../queries/songs");
 const {
   checkName,
@@ -44,7 +45,7 @@ songs.get("/:id", async (req, res) => {
 songs.post("/", checkName, checkArtist, checkBoolean, async (req, res) => {
   try {
     const makeSong = await createSong(req.body);
-    res.status(200).json(makeSong);
+    res.json(makeSong);
   } catch (error) {
     res.status(400).json({ error: error });
   }
@@ -58,6 +59,17 @@ songs.delete("/:id", async (req, res) => {
     res.status(200).json(deletedSong);
   } else {
     res.status(404).json("Song not found");
+  }
+});
+
+//UPDATE
+songs.put("/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const updatedSong = await updateSong(id, req.body);
+    res.status(200).json(updatedSong);
+  } catch (error) {
+    res.status(400).json({ error: error });
   }
 });
 
