@@ -57,10 +57,54 @@ const updateSong = async (id, song) => {
   }
 };
 
+// Ordering alphabetically
+const orderSongs = async () => {
+  try {
+    const orderedSongs = await db.any("SELECT * FROM songs ORDER BY name ASC")
+    return orderedSongs
+  } catch (error) {
+    return error
+  }
+}
+
+// Ordering in reverse alphabetical order
+const reverseSongs = async () => {
+  try {
+    const reverse = await db.any("SELECT * FROM songs ORDER BY name DESC")
+    return reverse
+  } catch (error) {
+    return error
+  }
+}
+
+// Selects favorited songs
+const isFavorite = async () => {
+  try {
+    const favorites = await db.any("SELECT * FROM songs WHERE is_favorite = true")
+    return favorites
+  } catch (error) {
+    return error
+  }
+}
+
+// Selects songs not favorited
+const isNotFavorite = async () => {
+  try {
+    const notFavorites = await db.any("SELECT * FROM songs WHERE is_favorite = false")
+    return notFavorites
+  } catch (error) {
+    return error
+  }
+}
+
 module.exports = {
   getAllSongs,
   getOneSong,
   createSong,
   deleteSong,
   updateSong,
+  orderSongs,
+  reverseSongs,
+  isFavorite,
+  isNotFavorite
 };
