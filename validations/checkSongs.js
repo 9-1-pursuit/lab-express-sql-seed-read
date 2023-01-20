@@ -16,7 +16,9 @@ const checkSongArtist = (req, res, artist) => {
 
 // function to check for true or false
 const checkBoolean = (req, res, next) => {
-  req.body.is_favorite === true || false || undefined
+  req.body.is_favorite === true ||
+  req.body.is_favorite === false ||
+  req.body.is_favorite === undefined
     ? next()
     : res
         .status(400)
