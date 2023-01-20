@@ -15,7 +15,7 @@ router.get("/", async (req, resp) => {
 router.get("/:id", async (req, resp) => {
     const {id} = req.params
     const album = await getOneAlbum(id)
-    
+    console.log(album)
     album.album_id ? resp.json(album) : resp.status(404).json({Error: "Album id not found"})
 })
 

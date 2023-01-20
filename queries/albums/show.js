@@ -2,7 +2,7 @@ const database = require("../../database/databaseConfig.js")
 
 async function getOneAlbum(idValue) {
     try {
-        const oneAlbum = await database.one('SELECT album_id, album_name, artist FROM albums LEFT JOIN songs ON album_name = album WHERE album_id = $1', idValue)
+        const oneAlbum = await database.one('SELECT DISTINCT album_id, album_name, artist FROM albums LEFT JOIN songs ON album_name = album WHERE album_id = $1', idValue)
         return oneAlbum
     } catch(err) {
         return err
