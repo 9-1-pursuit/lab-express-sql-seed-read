@@ -24,7 +24,7 @@ const checkBoolean = (req, res, next) => {
         .status(400)
         .json({ error: "there must be a true or false value for is_favorite" })
 }
-
+//  not required but i read it should always be present on website
 const validateURL = (req, res, next) => {
   req.body.url.substring(0, 7) === "http://" ||
   req.body.url.substring(0, 8) === "https://"
