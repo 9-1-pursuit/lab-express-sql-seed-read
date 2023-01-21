@@ -29,8 +29,8 @@ const checkBoolean = (req, res, next) => {
   // CHECK for time 
   const checkTime = (req,res, next) =>{
     const time = req.body.time
+    return next()
     if (time.length === 4 ){
-      return next()
     }else {
       res.status(404).json({erro: 'Time bust look like this 3:19'})
     }
