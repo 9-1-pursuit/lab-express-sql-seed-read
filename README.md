@@ -1,5 +1,4 @@
 # Tuner Full Stack Application
-Tuner Application FRONTEND = https://github.com/Gillesedgy/Mod4-tuner-frontend
 
 
 Let's make our own music playlist app!
