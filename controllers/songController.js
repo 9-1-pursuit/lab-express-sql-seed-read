@@ -40,9 +40,10 @@ songs.get("/", async (req, res) => {
         }
         return 0;
       });
-      return res.status(200).json(descO);
+      res.status(200).json(descO);
+    } else {
+      res.status(200).json(allSongs);
     }
-    res.status(200).json(allSongs);
   } else {
     res.status(500).json({ error: "Server Error" });
   }
@@ -71,17 +72,16 @@ songs.post("/", checkName, checkArtist, checkFav, async (req, res) => {
 
 //delete song
 songs.delete("/:id", async (req, res) => {
-  try {
-    const { id } = req.params;
-    const song = songs.findById(id);
-    if (song) {
-      const deletedSong = await deleteSong(id);
-      if (deletedSong.id) {
-        console.log(deletedSong.name);
-        res.status(200).json(deletedSong);
-      }
-    }
-  } catch (error) {
+  const { id } = req.params;
+  // const song = songs.findById(id);
+  // if (song) {
+  const deletedSong = await deleteSong(id);
+  if (deletedSong.id) {
+    console.log(deletedSong.name);
+    res.status(200).json(deletedSong);
+  }
+  // }
+  else {
     res.status(404).json({ error: "song not found" });
   }
 });
