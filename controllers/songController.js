@@ -43,10 +43,12 @@ songs.delete("/:id", async ( req, res) => {
 songs.put("/:id", checkBoolean, checkName, async (req, res) => {
     const { id } = req.params;
     const updatedSong = await updateSong(id, req.body);
-
+    if(updatedSong){
         res.status(200).json(updatedSong)
-    
-    
+    } else{
+        res.status(404).json({error: "not found"})
+    }
+    res.status(200).json(updatedSong);
   });
 
 module.exports = songs;
