@@ -11,3 +11,16 @@ CREATE TABLE songs (
     time TEXT,
     is_favorite boolean 
 );
+
+-- ALBUM
+DROP TABLE IF EXISTS albums;
+
+CREATE TABLE albums (
+id SERIAL PRIMARY KEY,
+title TEXT NOT NULL,
+released_year INTEGER NOT NULL,
+length TEXT,
+genre TEXT,
+song_id INTEGER REFERENCES songs (id) ON DELETE CASCADE
+
+);
