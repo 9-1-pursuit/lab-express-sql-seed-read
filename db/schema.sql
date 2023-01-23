@@ -3,11 +3,21 @@ CREATE DATABASE songs_dev;
 
 \c songs_dev;
 
+CREATE TABLE playlists (
+    id SERIAL PRIMARY KEY,
+    creator TEXT,
+    title TEXT,
+    details TEXT,
+    rating NUMERIC,
+    CHECK (rating >= 0 AND rating <= 5)
+);
+
 CREATE TABLE songs (
     id SERIAL PRIMARY KEY,
     name TEXT NOT NULL,
     artist TEXT NOT NULL,
     album TEXT,
     time TEXT,
-    is_favorite BOOL
+    is_favorite BOOL,
+    playlist_id INTEGER REFERENCES playlists (id)
 );

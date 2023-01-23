@@ -44,7 +44,7 @@ songs.post("/", checkInput, async (req, res) => {
     const song = await createSong(req.body);
     res.status(200).json(song);
   } catch (error) {
-    res.status(400).json({ error: error });
+    res.status(500).json({ error: error });
   }
 });
 
