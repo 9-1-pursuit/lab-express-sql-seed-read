@@ -13,7 +13,6 @@ INSERT INTO songs (name, artist, album, time, is_favorite) VALUES
 ('Fame','David Bowie', 'Young Americans','4:10', true);
 
 -- ALBUMS 
-INSERT INTO albums (
-    song_id, title, released_year, length, genre) VALUES ('3', 'The Last Hope', '2019', '7:46', 'Hip-Hop/Rap'),
-('1', 'Twin Fantasy', '2018', '71', 'Alternative/Indie' ),
+INSERT INTO albums (song_id, title, released_year, length, genre) VALUES ('3', 'The Last Hope', '2019', '7:46', 'Hip-Hop/Rap'),
+('1', 'Twin Fantasy', '2018', '71', 'Alternative/Indie'),
 ('5', 'Yes Future', '2018', '86', 'Dance/Electronic');
