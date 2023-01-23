@@ -33,11 +33,9 @@ const checkName = (req, res, next) => {
     ) {
       return next();
     } else {
-      res
-        .status(400)
-        .json({ error: `You forgot to start your url with http:// or https://` });
+        res.status(400).json({ error: `You forgot to start your url with http:// or https://` });
     }
-}
+  }
 
 
 
