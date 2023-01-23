@@ -11,3 +11,14 @@ CREATE TABLE songs(
     time TEXT,
     is_favorite BOOLEAN
 );
+
+DROP TABLE IF EXISTS playlist;
+
+CREATE TABLE playlist (
+ id SERIAL PRIMARY KEY,
+ title TEXT,
+--  name TEXT,
+ num_of_tracks INTEGER,
+ songb_id INTEGER REFERENCES songs(id)
+ ON DELETE CASCADE
+);
