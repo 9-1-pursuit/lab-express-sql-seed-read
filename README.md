@@ -113,6 +113,7 @@ Add functionality where if a user goes to
 
 
 # [Part 4 is a React App, see other readme for more details](https://github.com/9-1-pursuit/tuner-frontend)
+Link to my Tuner App Frontend Repo: https://github.com/sreeves07/FrontEnd-Tuner-App
 
 ## Part 5 
 
