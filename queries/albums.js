@@ -30,4 +30,13 @@ const createAlbum = async (album) => {
     }
 }
 
-module.exports = { getAllAlbums, getAlbum, createAlbum }
+const destroyAlbum = async (id) => {
+    try {
+        const deletedAlbum = await db.one("DELETE FROM albums WHERE id=$1 RETURNING *", id)
+        return deletedAlbum
+    } catch (error) {
+        return error
+    }
+}
+
+module.exports = { getAllAlbums, getAlbum, createAlbum, destroyAlbum }

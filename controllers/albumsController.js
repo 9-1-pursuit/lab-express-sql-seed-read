@@ -1,6 +1,6 @@
 const express = require("express")
 const albums = express.Router()
-const { getAllAlbums, getAlbum, createAlbum } = require('../queries/albums')
+const { getAllAlbums, getAlbum, createAlbum, destroyAlbum } = require('../queries/albums')
 
 // INDEX / SHOWALL
 albums.get('/', async ( req, res ) => {
@@ -30,6 +30,17 @@ albums.post("/", async ( req, res ) => {
         res.status(400).json({
             message: 'error'
         })
+    }
+})
+
+// DESTROY
+albums.delete("/:id", async ( req, res ) => {
+    const { id } = req.params
+    try {
+        const deletedAlbum = await destroyAlbum(id)
+        res.status(200).json(deletedAlbum)
+    } catch (error) {
+        res.status(404).json({ error: "id not found"})
     }
 })
 
