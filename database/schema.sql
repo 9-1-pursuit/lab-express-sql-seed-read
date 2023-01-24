@@ -14,7 +14,11 @@ CREATE TABLE songs (
 
 CREATE TABLE albums (
     album_id serial PRIMARY KEY,
-    album_name TEXT
+    album_artist TEXT,
+    released INTEGER,
+    units_sold INTEGER,
+    album_name TEXT NOT NULL REFERENCES songs (album)
+    ON DELETE CASCADE 
 )
 
 /* 

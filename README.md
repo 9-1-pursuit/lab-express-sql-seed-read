@@ -87,7 +87,6 @@ You should build at least one one-to-many resource. Choose one of the following:
 - Build a way to see the Songs on an Album
 - Tidy up the UI/UX so this app is easy to use for anyone
 
-
 For addtional practice keep building out the app. Learning to work with a more complex app is an important skill. 
 
 ## SUPER BONUS Part 6
