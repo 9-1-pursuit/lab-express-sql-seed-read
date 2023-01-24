@@ -24,47 +24,78 @@ router.get("/", async (req, resp) => {
     if(Object.keys(query).length){
         const queriedSongs = await getQueriedSongs(query)
         
-        !queriedSongs ? resp.status(404).json({Error: "incorrect query values"}) : resp.status(200).json(queriedSongs)
+        !queriedSongs ? 
+        resp.status(404).json({Error: "incorrect query values"}) : 
+        resp.status(200).json(queriedSongs)
     }
     else{
         const songs = await getAllSongs(albumId)
         
-        songs[0] ? resp.status(200).json(songs) : resp.status(500).json({ error: "Server Error" });
+        songs[0] ? 
+        resp.status(200).json(songs) : 
+        resp.status(500).json({ error: "Server Error" });
     }
 })
 
 // SHOW ROUTE (ONE SONG)
 router.get("/:id", async (req, resp) => {
-    const {id} = req.params
-    const song = await getOneSong(id)
+    const { id, albumId } = req.params
+
+    if(!albumId){
+        const song = await getOneSong(id)
 
     song.id ? resp.json(song) : resp.redirect("/*")
+    }
+    else {
+        resp.redirect("/*")
+    }
 })
-
 /* 
     - CREATE(POST) using express-validator functionality
     - pass req.body as obj for argument in createSong function 
 */
 router.post("/", schemaCheck, validationError, async (req, resp) => {
-    const newSong = await createSong(req.body)
+    const { albumId } = req.params
+    if(!albumId){
+        const newSong = await createSong(req.body)
     
-    newSong.id ? resp.status(200).json(newSong) : resp.status(500).json({ error: "Server Error" })
+        newSong.id ? 
+        resp.status(200).json(newSong) : 
+        resp.status(500).json({ error: "Server Error" })
+    }
+    else {
+        resp.status(404).json({Error: "Cannot post to this URL"})
+    }  
 })
 
 // DELETE ROUTE 
 router.delete("/:id", async (req, resp) => {
-    const {id} = req.params
-    const deletedSong = await deleteSong(id)
+    const { id, albumId } = req.params
+    if(!albumId){
+        const deletedSong = await deleteSong(id)
 
-    deletedSong.id ? resp.status(200).json(deletedSong) : resp.status(404).json({ error: "Song Not Found" })
+        deletedSong.id ? 
+        resp.status(200).json(deletedSong) : 
+        resp.status(404).json({ error: "Song Not Found" })
+    }
+    else {
+        resp.status(404).json({Error: "Incorrect URL path"})
+    }   
 })
 
 // UPDATE/ EDIT/ PUT ROUTE
 router.put("/:id", schemaCheck, validationError, async (req, resp)=> {
-    const {id} = req.params
-    const updatedSong = await updateSong(id, req.body)
+    const { id, albumId } = req.params
+    if(!albumId){
+        const updatedSong = await updateSong(id, req.body)
 
-    updatedSong.id ? resp.status(200).json(updatedSong) : resp.status(500).json({ error: "Server Error" })
+        updatedSong.id ? 
+        resp.status(200).json(updatedSong) : 
+        resp.status(500).json({ error: "Server Error" })
+    }
+    else {
+        resp.status(404).json({Error: "Incorrect URL path"})
+    }
 })
 
 module.exports = router
