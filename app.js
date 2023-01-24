@@ -2,7 +2,7 @@ const cors = require("cors");
 const express = require("express");
 const app = express();
 
-const songController = require("./controllers/songController");
+//! const songController = require("./controllers/songController");
 // Album CONTROLLER
 const albumController = require("./controllers/albumController");
 
@@ -10,7 +10,7 @@ const albumController = require("./controllers/albumController");
 app.use(cors());
 app.use(express.json());
 // SONGS MIDDLEWARE
-app.use("/songs", songController);
+//! app.use("/songs", songController);
 // ALBUMS MIDDLEWARE
 app.use("/albums", albumController);
 

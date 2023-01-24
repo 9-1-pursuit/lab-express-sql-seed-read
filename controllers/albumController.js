@@ -1,6 +1,12 @@
 const express = require("express");
+//! MERGE PARAMS
 const albums = express.Router();
 
+//! IMPORT SONGS CONTROLLER
+const songController = require("./songController");
+
+//! USE Songs CONTROLLER
+albums.use("/:albumId/songs", songController);
 const {
   getAllAlbums,
   getOneAlbum,
@@ -10,6 +16,7 @@ const {
 } = require("../queries/albums");
 
 // INDEX
+//! UPDATE FOR MERGE PARAMS
 albums.get("/", async (req, res) => {
   const allAlbums = await getAllAlbums();
   if (allAlbums[0]) {
