@@ -5,11 +5,12 @@ async function updateSong(idValue, updatedObj) {
   if (!updatedObj.album && !updatedObj.time) {
     try {
       const updatedSong = await database.one(
-        "INSERT INTO songs(name, artist, is_favorite) VALUES ($1, $2, $3) RETURNING *",
+        "UPDATE songs SET name = $2, artist = $3, is_favorite = $4 WHERE id = $1 RETURNING *",
         [
-            updatedObj.name, 
-            updatedObj.artist, 
-            updatedObj.is_favorite
+          idValue,
+          updatedObj.name, 
+          updatedObj.artist, 
+          updatedObj.is_favorite
         ]
       );
       return updatedSong;
@@ -20,8 +21,9 @@ async function updateSong(idValue, updatedObj) {
     if (!updatedObj.album) {
       try {
         const updatedSong = await database.one(
-          "INSERT INTO songs(name, artist, time, is_favorite) VALUES ($1, $2, $3, $4) RETURNING *",
+          "UPDATE songs SET name = $2, artist = $3, time = $4, is_favorite = $5 WHERE id = $1 RETURNING *",
           [
+            idValue,
             updatedObj.name,
             updatedObj.artist,
             updatedObj.time,
@@ -35,8 +37,9 @@ async function updateSong(idValue, updatedObj) {
     } else if (!updatedObj.time) {
       try {
         const updatedSong = await database.one(
-          "INSERT INTO songs(name, artist, album, is_favorite) VALUES ($1, $2, $3, $4) RETURNING *",
+          "UPDATE songs SET name = $2, artist = $3, album = $4, is_favorite = $5 WHERE id = $1 RETURNING *",
           [
+            idValue,
             updatedObj.name,
             updatedObj.artist,
             updatedObj.album,
