@@ -13,14 +13,19 @@ CREATE TABLE songs (
 );
 
 CREATE TABLE albums (
-    album_id serial PRIMARY KEY,
+    id serial PRIMARY KEY,
     album_artist TEXT,
-    released INTEGER,
-    units_sold INTEGER,
+    released INT,
+    units_sold INT,
     album_name TEXT NOT NULL REFERENCES songs (album)
     ON DELETE CASCADE 
 )
 
+CREATE TABLE playlists (
+    id serial PRIMARY KEY,
+    playlist_name TEXT NOT NULL,
+    song_id INT NOT NULL REFERENCES songs (id)
+)
 /* 
      - Run this code in terminal to run schema file :
     npm run dbinit

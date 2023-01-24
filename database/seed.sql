@@ -15,6 +15,11 @@ INSERT INTO albums (album_name, album_artist, released, units_sold ) VALUES
 ('Get Ready!', '2 Unlimited', 1992, 544,000),
 ('Hello Dolly to Goodbye Charlie', 'Bobby Darin', 1964, 'Unknown'),
 ('Tracy Chapman', 'Tracy Chapman', 1988, 20,000,000);
+
+INSERT INTO playlists (playlist_name, song_id) VALUES
+('Chill', 2 ),
+('Chill', 6),
+('Chill', 1)
 /* 
      -Run this code in terminal to add data to your database: 
     npm run dbseed
