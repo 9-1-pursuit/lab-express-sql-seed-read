@@ -1,11 +1,12 @@
 const express = require("express")
 const router = express.Router()
-
 const { getAllAlbums } = require("../queries/albums/all.js")
 const { getOneAlbum, getSongsFromAlbum } = require("../queries/albums/show.js")
 const { createAlbum } = require("../queries/albums/create.js")
 const { deleteAlbum } = require("../queries/albums/delete.js")
-const { updateAlbum, updateAlbum } = require("../queries/albums/update.js")
+const { updateAlbum } = require("../queries/albums/update.js")
+const { albumSchema } = require("../validations/albumsValidations.js")
+const { validationError } = require("../validations/errorValidation.js")
 
 // GET ALL ALBUMS
 router.get("/", async (req, resp) => {
@@ -31,7 +32,7 @@ router.get("/:id/songs", async (req, resp) => {
 })
 
 // CREATE ALBUM
-router.post("/", async (req, resp) => {
+router.post("/", albumSchema, validationError, async (req, resp) => {
     const newAlbum = await createAlbum(req.body)
 
     newAlbum.id ? resp.status(200).json(newAlbum) : resp.status(500).json({error : "Server Error"})
@@ -47,7 +48,7 @@ router.delete("/:id", async (req, resp) => {
 })
 
 // UPDATE/EDIT/PUT ROUTE
-router.put("/;id", async (req, resp) => {
+router.put("/:id", albumSchema, validationError, async (req, resp) => {
     const {id} = req.params
     const updatedAlbum = await updateAlbum(id, req.body)
 

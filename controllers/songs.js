@@ -8,7 +8,8 @@ const { createSong } = require("../queries/songs/create.js")
 const { deleteSong } = require("../queries/songs/delete.js")
 const { updateSong } = require("../queries/songs/update.js")
 // validation
-const { validationError, schemaCheck } = require("../validations/schema-check.js")
+const { schemaCheck } = require("../validations/songsValidations.js")
+const { validationError } = require("../validations/errorValidation.js")
 
 // ROUTES for /songs
 
