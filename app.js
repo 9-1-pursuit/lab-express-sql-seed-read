@@ -2,6 +2,7 @@
 const cors = require('cors');
 const express = require('express');
 const songsController = require('./controllers/songController');
+const playlistController = require('./controllers/playlistController');
 
 //! Congfig
 const app = express();
@@ -13,6 +14,9 @@ app.use(express.json());
 
 //! Songs Routes
 app.use('/songs', songsController);
+
+//! playlist route
+app.use('/playlist', playlistController);
 
 //! Routes
 
