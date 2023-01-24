@@ -12,12 +12,13 @@ CREATE TABLE songs (
  is_favorite BOOLEAN
 );
 
-DROP TABLE IF EXISTS playlist;
+DROP TABLE IF EXISTS comments;
 
-CREATE TABLE playlist (
+CREATE TABLE comments (
  id SERIAL PRIMARY KEY,
- title VARCHAR(30),
- num_of_songs INTEGER,
- song_id INTEGER REFERENCES songs (id)
+ commenter TEXT,
+ title TEXT,
+ content TEXT,
+ songs_id INTEGER REFERENCES songs (id)
  ON DELETE CASCADE
 );

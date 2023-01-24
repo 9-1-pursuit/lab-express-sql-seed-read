@@ -15,12 +15,22 @@ const {
 } = require("../validations/checkSongs.js");
 
 // INDEX
+// songs.get("/", async (req, res) => {
+//   const allSongs = await getAllSongs();
+//   if (allSongs[0]) {
+//     res.status(200).json(allSongs);
+//   } else {
+//     res.status(500).json({ error: "server error" });
+//   }
+// });
 songs.get("/", async (req, res) => {
-  const allSongs = await getAllSongs();
-  if (allSongs[0]) {
-    res.status(200).json(allSongs);
-  } else {
-    res.status(500).json({ error: "server error" });
+  const { playlistId } = req.params;
+
+  try {
+    const allSongs = await getAllSongs(playlistId);
+    res.json(allSongs);
+  } catch (err) {
+    res.json(err);
   }
 });
 
