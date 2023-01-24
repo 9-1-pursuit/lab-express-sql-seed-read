@@ -1,5 +1,7 @@
 const express = require("express")
-const router = express.Router()
+// pass object in express.router to merge parameters from other controllers
+// const router = express.Router()
+const router = express.Router({ mergeParams: true })
 // import songs queries functions
 const { getAllSongs } = require("../queries/songs/all.js")
 const { getQueriedSongs } = require("../queries/songs/query-songs-route.js")
@@ -10,13 +12,14 @@ const { updateSong } = require("../queries/songs/update.js")
 // validation
 const { schemaCheck } = require("../validations/songsValidations.js")
 const { validationError } = require("../validations/errorValidation.js")
-// import albums controller into songs -> /songs/:songId/album
-router.use("/:songId/album", require("./albums.js"))
+
 
 // ROUTES for /songs
 // ALL / QUERY ROUTE
 router.get("/", async (req, resp) => {
     const query = req.query
+    // add conditional for /albums/:albumId/songs to show songsfor that album
+    const { albumId } = req.params
 
     if(Object.keys(query).length){
         const queriedSongs = await getQueriedSongs(query)
@@ -24,7 +27,7 @@ router.get("/", async (req, resp) => {
         !queriedSongs ? resp.status(404).json({Error: "incorrect query values"}) : resp.status(200).json(queriedSongs)
     }
     else{
-        const songs = await getAllSongs()
+        const songs = await getAllSongs(albumId)
         
         songs[0] ? resp.status(200).json(songs) : resp.status(500).json({ error: "Server Error" });
     }

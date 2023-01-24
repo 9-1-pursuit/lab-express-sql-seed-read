@@ -1,15 +1,6 @@
 const database = require("../../database/databaseConfig.js")
 
-// add parameter for function for merged parameter route path /songs/:songId/albums
-async function getAllAlbums(idValue=false) {
-    if(idValue){
-        try {
-           
-            
-        } catch (error) {
-            
-        }
-    }
+async function getAllAlbums() {
 
     try {
         const allAlbums = await database.any('SELECT DISTINCT * FROM albums ')

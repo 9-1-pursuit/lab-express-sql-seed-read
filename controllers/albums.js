@@ -1,7 +1,5 @@
 const express = require("express")
-// pass object in express.router to merge parameters from other controllers
-// const router = express.Router()
-const router = express.Router({ mergeParams: true })
+const router = express.Router()
 const { getAllAlbums } = require("../queries/albums/all.js")
 const { getOneAlbum, getSongsFromAlbum } = require("../queries/albums/show.js")
 const { createAlbum } = require("../queries/albums/create.js")
@@ -9,16 +7,12 @@ const { deleteAlbum } = require("../queries/albums/delete.js")
 const { updateAlbum } = require("../queries/albums/update.js")
 const { albumSchema } = require("../validations/albumsValidations.js")
 const { validationError } = require("../validations/errorValidation.js")
+// import songs controller into albums -> /album/:album_id/songs
+router.use("/:albumId/songs", require("./songs.js"))
+
 
 // GET ALL ALBUMS
 router.get("/", async (req, resp) => {
-    // add conditional for /songs/:songId/albums to show album for that song 
-    const { songId } = req.params
-
-    if(songId){
-        const albumForThisSong = await getAllAlbums(songId)
-    }
-
     const albums = await getAllAlbums()
 
     albums.length > 0 ? resp.status(200).json(albums) : resp.status(500).json({ error: "Server Error" });
