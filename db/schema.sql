@@ -11,3 +11,14 @@ CREATE TABLE seed (
  time TEXT,
  is_favorite BOOLEAN
 );
+
+DROP TABLE IF EXISTS albums;
+
+CREATE TABLE albums (
+    id SERIAL PRIMARY KEY,
+    title TEXT NOT NULL,
+    artist TEXT NOT NULL,
+    is_favorite BOOLEAN,
+    song_id INTEGER REFERENCES seed (id)
+    ON DELETE CASCADE
+);
