@@ -10,9 +10,10 @@ const { updateSong } = require("../queries/songs/update.js")
 // validation
 const { schemaCheck } = require("../validations/songsValidations.js")
 const { validationError } = require("../validations/errorValidation.js")
+// import albums controller into songs -> /songs/:songId/album
+router.use("/:songId/album", require("./albums.js"))
 
 // ROUTES for /songs
-
 // ALL / QUERY ROUTE
 router.get("/", async (req, resp) => {
     const query = req.query
