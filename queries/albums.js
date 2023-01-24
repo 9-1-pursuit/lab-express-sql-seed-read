@@ -1,4 +1,4 @@
-const db = require("../db.dbconfig");
+const db = require("../db/dbConfig");
 
 // GET ALL ALBUMS
 const getAllAlbums = async () => {
@@ -24,9 +24,8 @@ const getOneAlbum = async (id) => {
 const createAlbum = async (album) => {
   try {
     const newAlbum = await db.one(
-      "INSERT INTO albums(song_id, title, released_year, length, genre) VALUES($1, $2, $3, $4, $5) RETURNING *",
+      "INSERT INTO albums( title, released_year, length, genre, album_id) VALUES($1, $2, $3, $4, $5) RETURNING *",
       [
-        album.song_id,
         album.title,
         album.released_year,
         album.length,
@@ -43,7 +42,7 @@ const createAlbum = async (album) => {
 const deleteAlbum = async (id) => {
   try {
     const deletedAlbum = await db.one(
-      "DELETE FROM albums id=$1 RETURNING *",
+      "DELETE FROM albums WHERE id=$1 RETURNING *",
       id
     );
     return deletedAlbum;
@@ -57,15 +56,10 @@ const deleteAlbum = async (id) => {
 const updateAlbum = async (id, album) => {
   try {
     const updatedAlbum = await db.one(
-      "UPDATE albums SET title=$1, released_year=$2, length=$2, genre=$3 WHERE id=$4 RETURNING *",
-      [
-        album.song_id,
-        album.title,
-        album.released_year,
-        album.length,
-        album.genre,
-      ]
+      "UPDATE albums SET title=$1, released_year=$2, length=$3, genre=$4 WHERE id=$5 RETURNING *",
+      [album.title, album.released_year, album.length, album.genre, id]
     );
+    return updatedAlbum;
   } catch (error) {
     return error;
   }

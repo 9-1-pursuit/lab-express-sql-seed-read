@@ -1,14 +1,18 @@
 const cors = require("cors");
 const express = require("express");
-// const songController = require("./controllers/songController.js");
 const app = express();
+
+const songController = require("./controllers/songController");
+// Album CONTROLLER
+const albumController = require("./controllers/albumController");
 
 // MIDDLEWARE
 app.use(cors());
 app.use(express.json());
-const songController = require("./controllers/songController");
 // SONGS MIDDLEWARE
 app.use("/songs", songController);
+// ALBUMS MIDDLEWARE
+app.use("/albums", albumController);
 
 // ROUTES
 app.get("/", (req, res) => {
