@@ -4,7 +4,11 @@ const { getAllSongs , getSong, createSong , deleteSong , updateSong} = require('
 
 const {checkName , checkBoolean} = require("../validation/checkSongs")
 
+const play = require("./playlistController")
+
 const songs = express.Router()
+
+songs.use("/:songId/playlist", play)
 
 
 songs.get("/", async (req , res) => {
@@ -50,9 +54,6 @@ songs.delete("/:id", async (req ,res) => {
     res.status(404).json("Song not found")
   }
 })
-
-
-
 
 
 songs.put("/:id", checkName , checkBoolean, async (req , res) => {

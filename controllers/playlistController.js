@@ -4,17 +4,19 @@ const { getAllPlay, getPlay, createPlay, deletePlay, updatePlay} = require('../q
 
 
 
-const plays = express.Router()
+const plays = express.Router({mergeParams: true})
 
 
 plays.get("/", async (req , res) => {
-   const allPlays = await getAllPlay()
-    if(allPlays[0]){
-        res.status(200).json(allPlays)
-    }
-    else{
-        res.status(500).json({error: "server error"})
-    }
+   const {songId} = req.params
+
+   try{
+     const allPlay = await getAllPlay(songId)
+     res.json(allPlay)
+   }
+   catch(error){
+     res.json(error)
+   }
 })
 
 
