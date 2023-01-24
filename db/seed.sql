@@ -8,7 +8,7 @@ VALUES
 ('Zuu', 'Denzel Curry', 'Zuu', '2:06', true ),
 ('Automatic', 'Denzel Curry', 'Zuu', '3:03', true),
 ('Callaita', 'Bad Bunny', 'Un Verano Sin Ti', '4:11', true),
-('Bagdad', 'Rosalia', 'El Mal Querer', '3:03', true ),
+('Bagdad', 'Rosalia', 'El Mal Querer', '3:03', true,  ),
 ('Fog as a Bullet',  'The Marias', 'Cinema','2:57', true),
 ('Just a Feeling', 'The Marias', 'Cinema','1:22', true),
 ('Element', 'Kendrick Lamar', 'DAMN', '3:29', true),

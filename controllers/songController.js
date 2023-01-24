@@ -79,9 +79,7 @@ songs.delete("/:id", async (req, res) => {
   if (deletedSong.id) {
     console.log(deletedSong.name);
     res.status(200).json(deletedSong);
-  }
-  // }
-  else {
+  } else {
     res.status(404).json({ error: "song not found" });
   }
 });

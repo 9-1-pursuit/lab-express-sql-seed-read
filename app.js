@@ -2,6 +2,7 @@
 const cors = require("cors");
 const express = require("express");
 const songController = require("./controllers/songController");
+const playlistController = require("./controllers/playlistController");
 
 //config
 const app = express();
@@ -11,6 +12,7 @@ app.use(cors());
 app.use(express.json());
 //songs route
 app.use("/songs", songController);
+app.use("/playlists", playlistController);
 
 //routes
 app.get("/", (req, res) => {

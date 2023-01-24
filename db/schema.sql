@@ -9,7 +9,8 @@ CREATE TABLE songs (
     artist TEXT NOT NULL,
     album TEXT,
     time TEXT,
-   is_favorite BOOLEAN
+   is_favorite BOOLEAN,
+--    playlist_id INTEGER REFERENCES playlists (id) ON DELETE CASCADE ON UPDATE SET
 );
 
 
