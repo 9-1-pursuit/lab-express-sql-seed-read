@@ -5,7 +5,7 @@ const { checkName, checkArtist, checkBoolean } = require("../validations/checkSo
 const artistController = require('./artistController')
 
 
-songs.use('/:songId/artists')
+songs.use('/:songId/artists', artistController)
 
 // Index
 songs.get("/", async (req, res) => {

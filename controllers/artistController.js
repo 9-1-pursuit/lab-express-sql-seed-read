@@ -1,5 +1,4 @@
 const express = require('express')
-const { as } = require('pg-promise')
 const artists = express.Router({ mergeParams: true })
 const {  getAllArtists,
     createArtist,

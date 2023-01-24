@@ -20,7 +20,7 @@ CREATE TABLE artists (
  genre TEXT,
  label TEXT,
  listens_per_week NUMERIC,
- CHECK (istens_per_week >= 0),
+ CHECK (listens_per_week >= 0),
  song_id INTEGER REFERENCES songs (id)
  ON DELETE CASCADE
 );
