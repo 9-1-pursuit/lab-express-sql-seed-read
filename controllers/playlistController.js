@@ -1,5 +1,5 @@
 const express = require('express');
-const { as } = require('pg-promise');
+
 const playlists = express.Router({ mergeParams: true });
 
 const {
@@ -10,12 +10,16 @@ const {
   updatePlaylist,
 } = require('../queries/playlist');
 
+const songController = require('./songController');
+
+//! middleware
+playlists.use('/:playlistId/songs', songController);
+
 //! Index page
 
 playlists.get('/', async (req, res) => {
-  const { playlistId } = req.params;
   try {
-    const allPlaylists = await getAllPlaylists(playlistId);
+    const allPlaylists = await getAllPlaylists();
     res.status(200).json(allPlaylists);
   } catch (error) {
     res.status(500).json({ error: error });

@@ -16,7 +16,7 @@ app.use(express.json());
 app.use('/songs', songsController);
 
 //! playlist route
-app.use('/playlist', playlistController);
+app.use('/playlists', playlistController);
 
 //! Routes
 

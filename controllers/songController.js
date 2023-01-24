@@ -1,5 +1,5 @@
 const express = require('express');
-const songs = express.Router();
+const songs = express.Router({ mergeParams: true });
 const {
   getAllSongs,
   getSong,
@@ -13,11 +13,15 @@ const {
   checkBoolean,
 } = require('../validations/checkSongs');
 
+// const playlists = require('./playlistController');
+
+//! index
 songs.get('/', async (req, res) => {
-  const allSongs = await getAllSongs();
-  if (allSongs[0]) {
+  const { playlistID } = req.params;
+  try {
+    const allSongs = await getAllSongs(playlistID);
     res.status(200).json(allSongs);
-  } else {
+  } catch (error) {
     res.status(500).json({ error: 'Not found ' });
   }
 });
@@ -26,9 +30,12 @@ songs.get('/', async (req, res) => {
 
 songs.get('/:id', async (req, res) => {
   const { id } = req.params;
-  const song = await getSong(id);
-  if (!song.message) res.status(200).json(song);
-  else res.status(400).json({ error: 'Not Found' });
+  try {
+    const song = await getSong(id);
+    res.status(200).json(song);
+  } catch (error) {
+    res.status(500).json({ error: 'Not found' });
+  }
 });
 
 //! Create

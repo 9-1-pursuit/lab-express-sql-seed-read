@@ -1,17 +1,15 @@
 const db = require('../db/dbConfig');
 
-const getAllPlaylists = async (songId) => {
+//! index
+const getAllPlaylists = async () => {
   try {
-    const allPlaylists = await db.any(
-      'SELECT * FROM playlist WHERE song_id = $1',
-      songId
-    );
+    const allPlaylists = await db.any('SELECT * FROM playlist');
     return allPlaylists;
   } catch (error) {
     return error;
-  }\
+  }
 };
-
+//! Show
 const getPlaylist = async (id) => {
   try {
     const singlePlaylist = await db.one(
@@ -23,7 +21,7 @@ const getPlaylist = async (id) => {
     return error;
   }
 };
-
+//! create
 const makePlaylist = async (playlist) => {
   try {
     const newPlaylist = await db.one(
@@ -35,11 +33,11 @@ const makePlaylist = async (playlist) => {
     return error;
   }
 };
-
+//! delete
 const deletePlaylist = async (id) => {
   try {
     const deletedPlaylist = await db.one(
-      'DELETE FROM playlist WHERE id = $1',
+      'DELETE FROM playlist WHERE id = $1 RETURNING *',
       id
     );
     return deletedPlaylist;
@@ -47,7 +45,7 @@ const deletePlaylist = async (id) => {
     return error;
   }
 };
-
+//! Update
 const updatePlaylist = async (id, playlist) => {
   try {
     const updatedPlaylist = await db.one(
