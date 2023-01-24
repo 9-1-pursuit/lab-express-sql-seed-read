@@ -11,3 +11,16 @@ CREATE TABLE songs (
     time TEXT,
     is_favorite BOOLEAN
 );
+
+DROP TABLE IF EXISTS artists;
+
+CREATE TABLE artists (
+ id SERIAL PRIMARY KEY,
+ name TEXT,
+ genre TEXT,
+ label TEXT,
+ listens_per_week NUMERIC,
+ CHECK (istens_per_week >= 0),
+ song_id INTEGER REFERENCES songs (id)
+ ON DELETE CASCADE
+);

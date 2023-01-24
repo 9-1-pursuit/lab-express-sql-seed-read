@@ -2,6 +2,10 @@ const express = require("express")
 const songs = express.Router()
 const { getAllSongs, createSong, getSong, deleteSong, updateSong } = require('../queries/songs')
 const { checkName, checkArtist, checkBoolean } = require("../validations/checkSongs")
+const artistController = require('./artistController')
+
+
+songs.use('/:songId/artists')
 
 // Index
 songs.get("/", async (req, res) => {
