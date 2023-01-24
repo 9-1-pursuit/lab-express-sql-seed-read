@@ -14,25 +14,29 @@ const {
   validateURL,
 } = require("../validations/checkSongs.js");
 
-// INDEX
-// songs.get("/", async (req, res) => {
-//   const allSongs = await getAllSongs();
-//   if (allSongs[0]) {
-//     res.status(200).json(allSongs);
-//   } else {
-//     res.status(500).json({ error: "server error" });
-//   }
-// });
-songs.get("/", async (req, res) => {
-  const { playlistId } = req.params;
+const commentsController = require("./commentsController");
 
-  try {
-    const allSongs = await getAllSongs(playlistId);
-    res.json(allSongs);
-  } catch (err) {
-    res.json(err);
+songs.use("/:songs_id/comments", commentsController);
+
+// INDEX;
+songs.get("/", async (req, res) => {
+  const allSongs = await getAllSongs();
+  if (allSongs[0]) {
+    res.status(200).json(allSongs);
+  } else {
+    res.status(500).json({ error: "server error" });
   }
 });
+// songs.get("/", async (req, res) => {
+//   const { playlistId } = req.params;
+
+//   try {
+//     const allSongs = await getAllSongs(playlistId);
+//     res.json(allSongs);
+//   } catch (err) {
+//     res.json(err);
+//   }
+// });
 
 // SHOW
 songs.get("/:id", async (req, res) => {

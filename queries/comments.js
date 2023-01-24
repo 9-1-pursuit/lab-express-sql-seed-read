@@ -1,11 +1,14 @@
 const db = require("../db/dbConfig");
 
-const getAllComments = async () => {
+const getAllComments = async (songs_id) => {
   try {
-    const allComments = await db.any("SELECT * FROM comments");
+    const allComments = await db.any(
+      "SELECT * FROM comments WHERE songs_id=$1",
+      songs_id
+    );
     return allComments;
-  } catch (error) {
-    return error;
+  } catch (err) {
+    return err;
   }
 };
 

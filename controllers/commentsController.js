@@ -1,5 +1,5 @@
 const express = require("express");
-const comments = express.Router();
+const comments = express.Router({ mergeParams: true });
 const {
   getAllComments,
   getComment,
@@ -10,11 +10,13 @@ const {
 
 // INDEX
 comments.get("/", async (req, res) => {
-  const allComments = await getAllComments();
-  if (allComments[0]) {
-    res.status(200).json(allComments);
-  } else {
-    res.status(500).json({ error: "Server not working" });
+  const { songs_id } = req.params;
+
+  try {
+    const allComments = await getAllComments(songs_id);
+    res.json(allComments);
+  } catch (err) {
+    res.json(err);
   }
 });
 

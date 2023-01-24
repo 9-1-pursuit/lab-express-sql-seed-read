@@ -2,8 +2,6 @@
 const cors = require("cors");
 const express = require("express");
 const songController = require("./controllers/songController.js");
-// comments ROUTES
-const commentsController = require("./controllers/commentsController");
 
 // playlist ROUTES
 // const playlistController = require("./controllers/playlistController");
@@ -15,7 +13,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use("/songs", songController);
-app.use("/comments", commentsController);
+
 // app.use("/playlist", playlistController);
 
 // ROUTES
