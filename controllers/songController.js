@@ -1,7 +1,8 @@
 const express = require("express");
-const songs = express.Router();
+const songs = express.Router({ mergeParams: true });
 const { getAllSongs, getSong, createSong, destroySong, updateSong } = require("../queries/songs")
 const { checkName, checkBoolean, checkArtist } = require("../validations/checkSongs.js")
+
 
 // INDEX
 songs.get("/", async (req, res) => {
@@ -27,8 +28,6 @@ songs.get('/:id', async ( req, res) => {
 songs.post("/", checkName, checkBoolean, checkArtist, async ( req, res ) => {
         const newSong = await createSong(req.body)
         if (newSong) {
-
-        
         console.log('songController console.log of "req.body"',req.body)
         res.json(newSong)
 } else{

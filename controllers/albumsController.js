@@ -1,6 +1,9 @@
 const express = require("express")
 const albums = express.Router()
 const { getAllAlbums, getAlbum, createAlbum, destroyAlbum } = require('../queries/albums')
+const songController = require("./songController")
+
+albums.use("/:songsId/songs", songController)
 
 // INDEX / SHOWALL
 albums.get('/', async ( req, res ) => {
@@ -43,5 +46,7 @@ albums.delete("/:id", async ( req, res ) => {
         res.status(404).json({ error: "id not found"})
     }
 })
+
+// UPDATE
 
 module.exports = albums;

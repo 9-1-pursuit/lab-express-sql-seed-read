@@ -39,4 +39,16 @@ const destroyAlbum = async (id) => {
     }
 }
 
-module.exports = { getAllAlbums, getAlbum, createAlbum, destroyAlbum }
+// UPDATE
+const updateAlbum = async (id, album) => {
+    try {
+        const updatedAlbum = await db.one("UPDATE albums SET title=$1, artist=$2, is_favorite=$3, song_id=$4 WHERE id=$5 RETURNING *",
+        [album.title, album.artist, album.is_favorite, album.song_id, id]
+        )
+        return updatedAlbum
+    } catch (error) {
+        return error
+    }
+}
+
+module.exports = { getAllAlbums, getAlbum, createAlbum, destroyAlbum, updateAlbum }
