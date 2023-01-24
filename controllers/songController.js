@@ -1,5 +1,5 @@
 const express = require("express");
-const songs = express.Router();
+const songs = express.Router({ mergeParams: true });
 const {
   getAllSongs,
   getSong,
@@ -15,9 +15,10 @@ const {
 
 //index
 songs.get("/", async (req, res) => {
+  const { playlistId } = req.params;
   const { order } = req.query;
 
-  const allSongs = await getAllSongs();
+  const allSongs = await getAllSongs(playlistId);
   if (allSongs[0]) {
     if (order === "asc") {
       const ascO = allSongs.sort((a, b) => {
