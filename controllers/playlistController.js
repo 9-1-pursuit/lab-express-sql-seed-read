@@ -12,7 +12,7 @@ plays.use("/:playsId/songs", songs)
 
 plays.get("/", async (req , res) => {
    const allPlays = await getAllPlay()
-   console.log(allPlays)
+
     if(allPlays[0]){
         res.status(200).json(allPlays)
     }
