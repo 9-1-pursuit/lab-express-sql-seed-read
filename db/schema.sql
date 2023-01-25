@@ -5,8 +5,8 @@ CREATE DATABASE songs_dev;
 
 CREATE TABLE playlists (
     id SERIAL PRIMARY KEY,
-    creator TEXT,
-    title TEXT,
+    creator TEXT NOT NULL,
+    title TEXT NOT NULL,
     details TEXT,
     rating NUMERIC,
     CHECK (rating >= 0 AND rating <= 5)
@@ -20,4 +20,5 @@ CREATE TABLE songs (
     time TEXT,
     is_favorite BOOL,
     playlist_id INTEGER REFERENCES playlists (id)
+    ON DELETE CASCADE
 );

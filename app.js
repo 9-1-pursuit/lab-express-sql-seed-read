@@ -2,7 +2,7 @@
 const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
-const songController = require("./controllers/songController");
+// const songController = require("./controllers/songController");
 const playlistController = require("./controllers/playlistController");
 
 // Configure
@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(morgan("tiny"));
 app.use(cors());
 
-app.use("/songs", songController);
+// app.use("/songs", songController);
 app.use("/playlists", playlistController);
 
 // Routes

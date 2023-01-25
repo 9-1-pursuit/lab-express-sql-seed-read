@@ -7,6 +7,9 @@ const {
   deletePlaylist,
   updatePlaylist,
 } = require("../queries/playlists");
+const songController = require("./songController")
+
+playlists.use("/:playlistId/songs", songController);
 
 // Index
 playlists.get("/", async (req, res) => {

@@ -1,5 +1,5 @@
 const express = require("express");
-const songs = express.Router();
+const songs = express.Router({ mergeParams: true });
 const {
   getAllSongs,
   getSong,
@@ -12,17 +12,20 @@ const { checkInput } = require("../validations/checkSong");
 
 // Index
 songs.get("/", async (req, res) => {
-  const allSongs = await getAllSongs();
-  const { is_favorite, order } = req.query;
-  if (allSongs[0]) {
-    if (is_favorite || order) {
-      const filteredSorted = await filterAndSort(is_favorite, order);
-      res.status(200).json(filteredSorted);
-    } else {
-      res.status(200).json(allSongs);
+  const { playlistId } = req.params;
+  try {
+    const allSongs = await getAllSongs(playlistId);
+    const { is_favorite, order } = req.query;
+    if (allSongs[0]) {
+      if (is_favorite || order) {
+        const filteredSorted = await filterAndSort(is_favorite, order);
+        res.status(200).json(filteredSorted);
+      } else {
+        res.status(200).json(allSongs);
+      }
     }
-  } else {
-    res.status(500).json({ error: "server error" });
+  } catch (error) {
+    res.status(500).json({ error: error });
   }
 });
 
