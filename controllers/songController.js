@@ -2,7 +2,8 @@ const express = require("express");
 const songs = express.Router();
 const { getAllSongs , getSong, createSong, deleteSong, updateSong} = require("../queries/songs")
 const { checkArtist, checkBoolean, checkName } = require("../validations/checkSongs")
-
+const reviewsController = require("./reviewsController.js");
+songs.use("/:songId/reviews", reviewsController);
 
 // INDEX
 songs.get("/", async (req, res) => {
