@@ -17,9 +17,9 @@ const {
 
 //! index
 songs.get('/', async (req, res) => {
-  const { playlistID } = req.params;
+  const { playlistId } = req.params;
   try {
-    const allSongs = await getAllSongs(playlistID);
+    const allSongs = await getAllSongs(playlistId);
     res.status(200).json(allSongs);
   } catch (error) {
     res.status(500).json({ error: 'Not found ' });

@@ -1,7 +1,5 @@
 const express = require('express');
-
-const playlists = express.Router({ mergeParams: true });
-
+const playlists = express.Router();
 const {
   getAllPlaylists,
   getPlaylist,
@@ -9,7 +7,6 @@ const {
   deletePlaylist,
   updatePlaylist,
 } = require('../queries/playlist');
-
 const songController = require('./songController');
 
 //! middleware
