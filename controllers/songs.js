@@ -13,7 +13,6 @@ const { updateSong } = require("../queries/songs/update.js")
 const { schemaCheck } = require("../validations/songsValidations.js")
 const { validationError } = require("../validations/errorValidation.js")
 
-
 // ROUTES for /songs
 // ALL / QUERY ROUTE
 router.get("/", async (req, resp) => {
@@ -44,16 +43,16 @@ router.get("/:id", async (req, resp) => {
     if(!albumId){
         const song = await getOneSong(id)
 
-    song.id ? resp.json(song) : resp.redirect("/*")
+        song.id ? 
+        resp.json(song) : 
+        resp.redirect("/*")
     }
     else {
         resp.redirect("/*")
     }
 })
-/* 
-    - CREATE(POST) using express-validator functionality
-    - pass req.body as obj for argument in createSong function 
-*/
+
+//  CREATE(POST) using express-validator functionality
 router.post("/", schemaCheck, validationError, async (req, resp) => {
     const { albumId } = req.params
     if(!albumId){
@@ -83,7 +82,7 @@ router.delete("/:id", async (req, resp) => {
     }   
 })
 
-// UPDATE/ EDIT/ PUT ROUTE
+// UPDATE/ PUT ROUTE
 router.put("/:id", schemaCheck, validationError, async (req, resp)=> {
     const { id, albumId } = req.params
     if(!albumId){

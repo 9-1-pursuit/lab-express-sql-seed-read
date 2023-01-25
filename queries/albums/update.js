@@ -13,7 +13,8 @@ async function updateAlbum(idValue, obj) {
       ]
     );
     return updatedAlbum
-  } catch (error) {
+  } 
+  catch (err) {
     return err;
   }
 }
