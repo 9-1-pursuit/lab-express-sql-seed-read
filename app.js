@@ -2,7 +2,7 @@
 const cors = require('cors');
 const express = require('express');
 const songsController = require('./controllers/songController.js');
-const playlistController = require("./controllers/playlistController.js");
+
 
 // Congfig
 const app = express();
@@ -12,7 +12,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use('/songs', songsController);
-app.use("/playlists", playlistController);
+
 
 
 // Routes

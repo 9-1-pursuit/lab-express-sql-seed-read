@@ -1,5 +1,6 @@
 const express = require("express");
-const playlists = express.Router();
+const playlists = express.Router({mergeParams: true})
+
 const {
   getAllPLaylists,
   getPlaylist,
@@ -8,13 +9,19 @@ const {
   updatePlaylist,
 } = require("../queries/playlists");
 
+//import songs to playlists
+const songController = require("./songController");
+playlists.use("/:playlistId/songs", songController);
+
 //index  playlists
 playlists.get("/", async (req, res) => {
-  const allPlaylists = await getAllPLaylists();
-  if (allPlaylists[0]) {
+  const { songId } = req.params
+  try {
+    const allPlaylists = await getAllPLaylists(songId)
     res.status(200).json(allPlaylists);
-  } else {
-    res.status(500).json({ error: "Server error" });
+} catch (error) {
+    res.status(500).json({ error: 'Internal Server Error'})
+  
   }
 });
 

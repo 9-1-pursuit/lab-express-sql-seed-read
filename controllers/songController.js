@@ -1,21 +1,29 @@
 
 const express = require('express');
 const songs = express.Router();
+
 const { getAllSongs, 
   getSong, 
   createSong, 
   deleteSong, 
   updateSong
  } = require('../queries/songs.js');
+
 const {checkName, 
   checkArtist, 
   checkBoolean, 
   validateURL
 } = require("../validations/checkSongs.js");
 
+// Importing reviews controller
+const playlistController = require('./playlistController')
+
+songs.use('/:songId/playlists', playlistController)
+
 
 songs.get('/', async (req, res) => {
-  const allSongs = await getAllSongs();
+  const { playlistId } = req.params;
+  const allSongs = await getAllSongs(playlistId);
   if (allSongs[0]) {
     res.status(200).json(allSongs);
   } else {

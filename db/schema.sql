@@ -10,6 +10,7 @@ CREATE TABLE songs(
     album TEXT,
     time TEXT,
     is_favorite BOOLEAN
+    
 );
 
 DROP TABLE IF EXISTS playlists;
