@@ -1,9 +1,11 @@
 \c tuner;
 
-INSERT INTO songs (name, artist, album, time, is_favorite) VALUES
-('Can You Feel My Heart', 'Bring Me The Horizon', 'Sempiternal', '3:48', true),
-('Body Language', 'Jesse McCartney ft. T-Pain', 'Jesse McCartney ft. T-Pain', '3:40', true),
-('Woman', 'Doja Cat', 'Planet Her', '3:13', false);
+INSERT INTO playlists (title) VALUES ('gym'), ('car'), ('work');
+
+INSERT INTO songs (playlist_id, name, artist, album, time, is_favorite) VALUES
+('1', 'Can You Feel My Heart', 'Bring Me The Horizon', 'Sempiternal', '3:48', true),
+('2','Body Language', 'Jesse McCartney ft. T-Pain', 'Jesse McCartney ft. T-Pain', '3:40', true),
+('3', 'Woman', 'Doja Cat', 'Planet Her', '3:13', false);
 
 INSERT INTO comments (songs_id, commenter, title, content)
 VALUES

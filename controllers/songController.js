@@ -1,5 +1,5 @@
 const express = require("express");
-const songs = express.Router();
+const songs = express.Router({ mergeParams: true });
 const {
   getAllSongs,
   getSong,
@@ -19,24 +19,24 @@ const commentsController = require("./commentsController");
 songs.use("/:songs_id/comments", commentsController);
 
 // INDEX;
+// songs.get("/", async (req, res) => {
+//   const allSongs = await getAllSongs();
+//   if (allSongs[0]) {
+//     res.status(200).json(allSongs);
+//   } else {
+//     res.status(500).json({ error: "server error" });
+//   }
+// });
 songs.get("/", async (req, res) => {
-  const allSongs = await getAllSongs();
-  if (allSongs[0]) {
+  const { playlist_id } = req.params;
+
+  try {
+    const allSongs = await getAllSongs(playlist_id);
     res.status(200).json(allSongs);
-  } else {
+  } catch (err) {
     res.status(500).json({ error: "server error" });
   }
 });
-// songs.get("/", async (req, res) => {
-//   const { playlistId } = req.params;
-
-//   try {
-//     const allSongs = await getAllSongs(playlistId);
-//     res.json(allSongs);
-//   } catch (err) {
-//     res.json(err);
-//   }
-// });
 
 // SHOW
 songs.get("/:id", async (req, res) => {
