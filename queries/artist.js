@@ -11,7 +11,7 @@ const getAllArtist = async () => {
 }
 
 // get one artist
-const getOneArtist = async () => {
+const getOneArtist = async (id) => {
   try {
     const oneArtist = await db.one("SELECT * FROM artist WHERE id=$1", id)
     return oneArtist
@@ -50,7 +50,7 @@ const updateArtist = async (id, artist) => {
   try {
     const updatedArtist = await db.one(
       "UPDATE artist SET title=$1, genre=$2 WHERE id=$3 RETURNING *",
-      [artist.name, artist.album]
+      [artist.name, artist.album, id]
     )
     return updatedArtist
   } catch (error) {
