@@ -2,7 +2,7 @@
 const cors = require("cors")
 const express = require("express")
 const songController = require("./controllers/songController.js")
-const playlistController = require("./controllers/playslistControllers")
+const playlistController = require("./controllers/playlistControllers")
 // CONFIGURATION
 const app = express()
 
