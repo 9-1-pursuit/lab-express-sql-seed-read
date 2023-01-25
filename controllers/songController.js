@@ -14,6 +14,11 @@ const {
   checkBoolean,
   validateURL,
 } = require("../validations/checkSongs")
+const playlist = require("./playlistController")
+
+// import playlist controller and middleware
+const playlistController = require("./playlistController")
+songs.use("/:songsId/playlist", playlistController)
 
 // Index
 // importing array of songs from database
