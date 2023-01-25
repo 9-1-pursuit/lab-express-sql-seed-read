@@ -1,12 +1,11 @@
 const express = require("express")
+const artist = express.Router({ mergerParams: true })
 const {
   updateArtist,
   deleteArtist,
   createArtist,
   getOneArtist,
 } = require("../queries/artist")
-
-// const artist = express.Router({ mergerParams: true })
 
 const songController = require("./songController")
 artist.use("./artistId/songs", songController)
