@@ -5,7 +5,11 @@ const {
   createArtist,
   getOneArtist,
 } = require("../queries/artist")
+
 // const artist = express.Router({ mergerParams: true })
+
+const songController = require("./songController")
+artist.use("./artistId/songs", songController)
 
 // Index (get)
 artist.get("/", async (req, res) => {

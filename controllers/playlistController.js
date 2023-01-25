@@ -8,8 +8,10 @@ const {
   updatePlaylist,
 } = require("../queries/playlist")
 
-// Index all playlist
+const songController = require("./songController")
+playlist.use("./playlistId/songs", songController)
 
+// Index all playlist
 playlist.get("/", async (req, res) => {
   const { playlistId } = req.params
   const allPlaylist = await getAllPlaylist(playlistId)
