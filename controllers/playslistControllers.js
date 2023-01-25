@@ -1,5 +1,5 @@
 const express = require("express")
-const playlist = express.Router()
+const playlist = express.Router({ mergeParams: true })
 const {
   getAllPlaylist,
   createPlaylist,
@@ -11,7 +11,8 @@ const {
 // Index all playlist
 
 playlist.get("/", async (req, res) => {
-  const allPlaylist = await getAllPlaylist()
+  const { playlistId } = req.params
+  const allPlaylist = await getAllPlaylist(playlistId)
   allPlaylist[0]
     ? res.status(200).json(allPlaylist)
     : res.status(500).json({ error: "Server not working" })
@@ -40,7 +41,7 @@ playlist.post("/", async (req, res) => {
 playlist.delete("/:id", async (req, res) => {
   try {
     const { id } = req.params
-    const deletedPlaylist = await deletePlaylist(req.body)
+    const deletedPlaylist = await deletePlaylist(id)
     res.status(200).json(deletedPlaylist)
   } catch (error) {
     res.status(500).json({ error: " Not Found" })

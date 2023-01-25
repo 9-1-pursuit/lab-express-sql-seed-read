@@ -11,7 +11,7 @@ const getAllPlaylist = async () => {
 }
 
 // get one playlist
-const getOnePlaylist = async () => {
+const getOnePlaylist = async (id) => {
   try {
     const onePlaylist = await db.one("SELECT * FROM playlist WHERE id=$1", id)
     return onePlaylist
@@ -51,7 +51,7 @@ const updatePlaylist = async (id, playlist) => {
   try {
     const updatedPlaylist = await db.one(
       "UPDATE playlist SET title=$1, genre=$2 WHERE id=$3 RETURNING *",
-      [playlist.title, playlist.genre]
+      [playlist.title, playlist.genre, id]
     )
     return updatedPlaylist
   } catch (error) {
