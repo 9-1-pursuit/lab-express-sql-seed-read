@@ -12,7 +12,7 @@ const {
 
 playlist.get("/", async (req, res) => {
   const allPlaylist = await getAllPlaylist()
-  allReviews[0]
+  allPlaylist[0]
     ? res.status(200).json(allPlaylist)
     : res.status(500).json({ error: "Server not working" })
 })
