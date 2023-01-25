@@ -14,7 +14,6 @@ const {
   checkBoolean,
   validateURL,
 } = require("../validations/checkSongs")
-const playlist = require("./playlistController")
 
 // import playlist controller and middleware
 const playlistController = require("./playlistController")
