@@ -24,7 +24,7 @@ const getOneAlbum = async (id) => {
 const createAlbum = async (album) => {
   try {
     const newAlbum = await db.one(
-      "INSERT INTO albums( title, released_year, length, genre, album_id) VALUES($1, $2, $3, $4, $5) RETURNING *",
+      "INSERT INTO albums( title, released_year, length, genre) VALUES($1, $2, $3, $4) RETURNING *",
       [
         album.title,
         album.released_year,

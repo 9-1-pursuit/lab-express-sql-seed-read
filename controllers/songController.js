@@ -34,7 +34,7 @@ songs.get("/", async (req, res) => {
   // }
 });
 
-//! SHOW and CREATE
+//! SHOW 
 songs.get("/:id", async (req, res) => {
   const { id } = req.params;
   const song = await getSong(id);
@@ -46,7 +46,7 @@ songs.get("/:id", async (req, res) => {
   }
 });
 
-// CREATE
+//! CREATE
 songs.post(
   "/",
   checkName,

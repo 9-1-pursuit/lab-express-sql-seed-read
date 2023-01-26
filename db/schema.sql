@@ -1,7 +1,7 @@
-DROP DATABASE IF EXISTS songs_dev;
-CREATE DATABASE songs_dev;
+DROP DATABASE IF EXISTS albums_dev;
+CREATE DATABASE albums_dev;
 
-\c songs_dev;
+\c albums_dev;
 -- ALBUM
 DROP TABLE IF EXISTS albums;
 
@@ -14,6 +14,7 @@ genre TEXT
 -- song_id INTEGER REFERENCES songs (id) ON DELETE CASCADE
 
 );
+
 DROP TABLE IF EXISTS songs;
 
 CREATE TABLE songs (
@@ -25,5 +26,6 @@ CREATE TABLE songs (
     is_favorite boolean, 
    album_id INTEGER REFERENCES albums (id) ON DELETE CASCADE
 );
+
 
 
