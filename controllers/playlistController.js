@@ -1,5 +1,5 @@
 const express = require("express")
-const playlist = express.Router({ mergeParams: true })
+const playlist = express.Router()
 const {
   getAllPlaylist,
   createPlaylist,
@@ -7,6 +7,7 @@ const {
   getOnePlaylist,
   updatePlaylist,
 } = require("../queries/playlist")
+const { checkTitle } = require("../validations/checkSongs")
 
 const songController = require("./songController")
 playlist.use("./playlistId/songs", songController)
@@ -30,7 +31,7 @@ playlist.get("/:id", async (req, res) => {
 })
 
 // create playlist
-playlist.post("/", async (req, res) => {
+playlist.post("/", checkTitle, async (req, res) => {
   try {
     const createdPlaylist = await createPlaylist(req.body)
     res.status(200).json(createdPlaylist)
@@ -51,7 +52,7 @@ playlist.delete("/:id", async (req, res) => {
 })
 
 // update
-playlist.put("/:id", async (req, res) => {
+playlist.put("/:id", checkTitle, async (req, res) => {
   try {
     const { id } = req.params
     const updatePlaylists = await updatePlaylist(id, req.body)
