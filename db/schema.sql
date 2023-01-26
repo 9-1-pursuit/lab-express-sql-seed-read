@@ -3,18 +3,18 @@ CREATE DATABASE songs_dev;
 \c songs_dev
 
 -- playlist one to many songs table 
-CREATE TABLE playlist(
-    id SERIAL PRIMARY KEY,
-    title TEXT NOT NULL
-    genre TEXT NOT NULL
-);
+-- CREATE TABLE playlist(
+--     id SERIAL PRIMARY KEY,
+--     title TEXT NOT NULL
+--     genre TEXT NOT NULL
+-- );
 
-CREATE TABLE ablum(
-    id SERIAL PRIMARY KEY,
-    name TEXT NOT NULL,
-    artist TEXT NOT NULL,
-    released TEXT
-);
+-- CREATE TABLE ablum(
+--     id SERIAL PRIMARY KEY,
+--     name TEXT NOT NULL,
+--     artist TEXT NOT NULL,
+--     released TEXT
+-- );
 
 CREATE TABLE artist(
     id SERIAL PRIMARY KEY,
