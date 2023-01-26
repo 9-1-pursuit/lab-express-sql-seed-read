@@ -7,7 +7,7 @@ CREATE TABLE playlists (
     id SERIAL PRIMARY KEY,
     creator TEXT NOT NULL,
     title TEXT NOT NULL,
-    details TEXT,
+    description TEXT,
     rating NUMERIC,
     CHECK (rating >= 0 AND rating <= 5)
 );

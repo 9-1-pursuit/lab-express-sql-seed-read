@@ -2,7 +2,10 @@ const db = require("../db/dbConfig");
 
 const getAllSongs = async (playlistId) => {
   try {
-    const allSongs = await db.any("SELECT * FROM songs WHERE playlist_id=$1", playlistId);
+    const allSongs = await db.any(
+      "SELECT * FROM songs WHERE playlist_id=$1",
+      playlistId
+    );
     return allSongs;
   } catch (error) {
     return error;
@@ -22,7 +25,14 @@ const createSong = async (song) => {
   try {
     const newSong = await db.one(
       "INSERT INTO songs (name, artist, album, time, is_favorite, playlist_id) VALUES($1, $2, $3, $4, $5, $6) RETURNING *",
-      [song.name, song.artist, song.album, song.time, song.is_favorite, song.playlist_id]
+      [
+        song.name,
+        song.artist,
+        song.album,
+        song.time,
+        song.is_favorite,
+        song.playlist_id,
+      ]
     );
     return newSong;
   } catch (error) {
@@ -54,29 +64,38 @@ const updateSong = async (id, song) => {
   }
 };
 
-const filterAndSort = async (filter, order) => {
+const filterAndSort = async (filter, order, playlistId) => {
   try {
     if (filter === undefined) {
       if (order.toUpperCase() === "ASC") {
-        return await db.any("SELECT * FROM songs ORDER BY name ASC");
+        return await db.any(
+          "SELECT * FROM songs WHERE playlist_id=$1 ORDER BY name ASC",
+          playlistId
+        );
       }
       if (order.toUpperCase() === "DESC") {
-        return await db.any("SELECT * FROM songs ORDER BY name DESC");
+        return await db.any(
+          "SELECT * FROM songs WHERE playlist_id=$1 ORDER BY name DESC",
+          playlistId
+        );
       }
     }
     if (order === undefined) {
-      return await db.any("SELECT * FROM songs WHERE is_favorite=$1", filter);
+      return await db.any(
+        "SELECT * FROM songs WHERE is_favorite=$1 and playlist_id=$2",
+        [filter, playlistId]
+      );
     }
     if (order.toUpperCase() === "ASC") {
       return await db.any(
-        "SELECT * FROM songs WHERE is_favorite=$1 ORDER BY name ASC",
-        filter
+        "SELECT * FROM songs WHERE is_favorite=$1 AND playlist_id=$2 ORDER BY name ASC",
+        [filter, playlistId]
       );
     }
     if (order.toUpperCase() === "DESC") {
       return await db.any(
-        "SELECT * FROM songs WHERE is_favorite=$1 ORDER BY name DESC",
-        filter
+        "SELECT * FROM songs WHERE is_favorite=$1 AND playlist_id=$2 ORDER BY name DESC",
+        [filter, playlistId]
       );
     }
   } catch (error) {

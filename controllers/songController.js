@@ -18,7 +18,7 @@ songs.get("/", async (req, res) => {
     const { is_favorite, order } = req.query;
     if (allSongs[0]) {
       if (is_favorite || order) {
-        const filteredSorted = await filterAndSort(is_favorite, order);
+        const filteredSorted = await filterAndSort(is_favorite, order, playlistId);
         res.status(200).json(filteredSorted);
       } else {
         res.status(200).json(allSongs);
