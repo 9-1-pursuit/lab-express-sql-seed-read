@@ -1,4 +1,5 @@
 # Tuner Full Stack Application
+Link to my Tuner App Frontend Repo: https://github.com/sreeves07/FrontEnd-Tuner-App
 
 Let's make our own music playlist app!
 
@@ -113,6 +114,7 @@ Add functionality where if a user goes to
 
 
 # [Part 4 is a React App, see other readme for more details](https://github.com/9-1-pursuit/tuner-frontend)
+
 
 ## Part 5 
 
