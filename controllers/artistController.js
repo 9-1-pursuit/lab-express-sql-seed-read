@@ -1,11 +1,12 @@
 const express = require("express")
-const artist = express.Router({ mergerParams: true })
+const artist = express.Router()
 const {
   updateArtist,
   deleteArtist,
   createArtist,
   getOneArtist,
 } = require("../queries/artist")
+const { checkArtist, checkAlbum } = require("../validations/checkSongs")
 
 const songController = require("./songController")
 artist.use("./artistId/songs", songController)
@@ -31,7 +32,7 @@ artist.get("/:id", async (req, res) => {
 })
 
 // create (post)
-artist.post("/", async (req, res) => {
+artist.post("/", checkArtist, checkAlbum, async (req, res) => {
   try {
     const OneArtist = await createArtist(req.body)
     res.status(200).json(OneArtist)
@@ -51,7 +52,7 @@ artist.delete("/:id", async (req, res) => {
 })
 
 // update Reviews
-artist.put("/:id", async (req, res) => {
+artist.put("/:id", checkAlbum, checkArtist, async (req, res) => {
   try {
     const updateOneArtist = await updateArtist(id, req.body)
     res.status(200).json(updateOneArtist)

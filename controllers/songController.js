@@ -13,11 +13,14 @@ const {
   checkArtist,
   checkBoolean,
   validateURL,
+  checkAlbum,
 } = require("../validations/checkSongs")
 
 // import playlist controller and middleware
-const playlistController = require("./playlistController")
-songs.use("/:songsId/playlist", playlistController)
+// const albumController = require("./albumController")
+// const artistController =require("./artistController")
+// const playlistController = require("./playlistController")
+// songs.use("/:songsId/playlist", playlistController)
 
 // Index
 // importing array of songs from database
@@ -42,6 +45,7 @@ songs.post(
   checkArtist,
   checkBoolean,
   validateURL,
+  checkAlbum,
   async (req, res) => {
     try {
       const newSong = await createSong(req.body)
@@ -68,6 +72,7 @@ songs.put(
   checkArtist,
   checkSongName,
   validateURL,
+  checkAlbum,
   async (req, res) => {
     try {
       const { id } = req.params

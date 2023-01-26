@@ -6,7 +6,7 @@ const {
   createAlbum,
   getOneAlbum,
   getAllAlbum,
-} = require("../queries/ablum")
+} = require("../queries/album")
 
 // Index (get)
 album.get("/", async (req, res) => {
