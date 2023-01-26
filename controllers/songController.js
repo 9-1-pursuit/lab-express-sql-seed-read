@@ -3,6 +3,11 @@ const songs = express.Router();
 const {getAllSongs, getSong, createSongs, deleteSong, updateSong} = require('../queries/songs');
 const { checkName, checkBoolean} = require('../validations/checkSongs');
 
+// IMPORTING ALBUMS CONTROLLER
+const albumsController = require('./albumsController')
+
+songs.use('/:songsId/albums', albumsController)
+
 //INDEX 
 songs.get("/", async(req, res) =>{
    const allSongs = await getAllSongs()
