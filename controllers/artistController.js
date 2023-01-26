@@ -35,6 +35,7 @@ artists.get("/:id", async (req, res) => {
 // create (post)
 artists.post("/", checkArtist, checkAlbum, async (req, res) => {
   try {
+    const { id } = req.params
     const OneArtist = await createArtist(req.body)
     res.status(200).json(OneArtist)
   } catch (error) {
