@@ -64,6 +64,7 @@ albums.put("/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const updatedAlbum = await updateAlbum(id, req.body);
+    res.status(200).json(updatedAlbum);
   } catch (error) {
     return res.status(404).json("The album is not found");
   }
