@@ -17,11 +17,13 @@ app.get("/", (req, res) => {
 // Songs ROUTES
 const songsController = require("./controllers/songController.js");
 app.use("/songs", songsController);
+const playlistsController = require("./controllers/playlistController.js");
+app.use("/playlists", playlistsController);
 
 // 404 PAGE
 app.get("*", (req, res) => {
-    res.status(404).send("Page not found");
-  });
+  res.status(404).send("Page not found");
+});
 
 // EXPORT
 module.exports = app;

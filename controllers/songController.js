@@ -6,6 +6,7 @@ const {
   createSong,
   deleteSong,
   updateSong,
+  getAllPlaylistSongs,
 } = require("../queries/songs");
 const {
   checkName,
@@ -21,6 +22,16 @@ songs.get("/", async (req, res) => {
     res.status(200).json(allSongs);
   } else {
     res.status(500).json({ error: "No songs found" });
+  }
+});
+
+songs.get("/playlistsongs/:id", async (req, res) => {
+  const { id } = req.params;
+  const playlistSongs = await getAllPlaylistSongs(id);
+  if (playlistSongs[0]) {
+    res.status(200).json(playlistSongs);
+  } else {
+    res.status(500).json({ error: "No playlist songs found" });
   }
 });
 
