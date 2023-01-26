@@ -1,7 +1,7 @@
 const express = require("express")
 const router = express.Router()
 const { getAllAlbums } = require("../queries/albums/all.js")
-const { getOneAlbum, getSongsFromAlbum } = require("../queries/albums/show.js")
+const { getOneAlbum } = require("../queries/albums/show.js")
 const { createAlbum } = require("../queries/albums/create.js")
 const { deleteAlbum } = require("../queries/albums/delete.js")
 const { updateAlbum } = require("../queries/albums/update.js")
@@ -13,6 +13,7 @@ router.use("/:albumId/songs", require("./songs.js"))
 // ROUTES FOR /albums
 // GET ALL ALBUMS
 router.get("/", async (req, resp) => {
+    // option to add queries???
     const albums = await getAllAlbums()
 
     albums.length > 0 ? 

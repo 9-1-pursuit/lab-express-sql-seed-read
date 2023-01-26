@@ -38,5 +38,4 @@ CREATE TABLE playlists (
 /* 
      - Run this code in terminal to run schema file :
     npm run dbinit
-    - ALBUMS AND SONGS SHOULD BE SWITCHED, WILL REFACTOR!!!
  */
