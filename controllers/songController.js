@@ -19,7 +19,7 @@ const reviewsController = require("./reviewsController.js");
 songs.use("/:songId/reviews", reviewsController);
 
 // INDEX
-songs.get("/", async (req, res) => {
+songs.get("/",async (req, res) => {
   const allSongs = await getAllSongs();
   if (allSongs[0]) {
     res.status(200).json(allSongs);

@@ -24,7 +24,6 @@ reviews.get("/", async (req, res) => {
 reviews.get("/:id", async (req, res) => {
   const { id } = req.params;
   const review = await getReview(id);
-  // console.log("review", review);
   if (!review.message) {
     res.status(200).json(review);
   } else {
