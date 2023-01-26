@@ -3,7 +3,7 @@ const db = require("../db/dbConfig")
 // get all artist
 const getAllArtist = async () => {
   try {
-    const allArtist = await db.any("SELECT * FROM artist")
+    const allArtist = await db.any("SELECT * FROM artists")
     return allArtist
   } catch (error) {
     return error
@@ -13,7 +13,7 @@ const getAllArtist = async () => {
 // get one artist
 const getOneArtist = async (id) => {
   try {
-    const oneArtist = await db.one("SELECT * FROM artist WHERE id=$1", id)
+    const oneArtist = await db.one("SELECT * FROM artists WHERE id=$1", id)
     return oneArtist
   } catch (error) {
     return error
@@ -24,7 +24,7 @@ const getOneArtist = async (id) => {
 const createArtist = async (artist) => {
   try {
     const createdOneArtist = await db.one(
-      "INSERT INTO artist(title, genre) VALUES($1, $2) RETURNING *",
+      "INSERT INTO artists (title, genre) VALUES($1, $2) RETURNING *",
       [artist.title, artist.genre]
     )
     return createdOneArtist
@@ -36,7 +36,7 @@ const createArtist = async (artist) => {
 const deleteArtist = async (id) => {
   try {
     const deletedArtist = await db.one(
-      "DELETE FROM artist WHERE id=$1 RETURNING * ",
+      "DELETE FROM artists WHERE id=$1 RETURNING * ",
       id
     )
     return deletedArtist
@@ -49,7 +49,7 @@ const deleteArtist = async (id) => {
 const updateArtist = async (id, artist) => {
   try {
     const updatedArtist = await db.one(
-      "UPDATE artist SET title=$1, genre=$2 WHERE id=$3 RETURNING *",
+      "UPDATE artists SET title=$1, genre=$2 WHERE id=$3 RETURNING *",
       [artist.name, artist.album, id]
     )
     return updatedArtist
