@@ -50,4 +50,5 @@ module.exports = {
   checkBoolean,
   validateURL,
   checkTitle,
+  checkAlbum,
 }
