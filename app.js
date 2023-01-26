@@ -14,7 +14,7 @@ app.use(cors())
 app.use(express.json())
 app.use("/songs", songController)
 // app.use("/playlist", playlistController)
-// app.use("/artist", artistController)
+// app.use("/artists", artistController)
 app.use("/album", albumController)
 
 // ROUTES

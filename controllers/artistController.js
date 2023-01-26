@@ -1,18 +1,19 @@
 const express = require("express")
-const artist = express.Router()
+const artists = express.Router()
 const {
   updateArtist,
   deleteArtist,
   createArtist,
   getOneArtist,
-} = require("../queries/artist")
+  getAllArtist,
+} = require("../queries/artists")
 const { checkArtist, checkAlbum } = require("../validations/checkSongs")
 
 const songController = require("./songController")
-artist.use("./artistId/songs", songController)
+artists.use("./artistId/songs", songController)
 
 // Index (get)
-artist.get("/", async (req, res) => {
+artists.get("/", async (req, res) => {
   const { artistId } = req.params
   try {
     const allArtist = await getAllArtist(artistId)
@@ -23,7 +24,7 @@ artist.get("/", async (req, res) => {
 })
 
 // SHOW (get)
-artist.get("/:id", async (req, res) => {
+artists.get("/:id", async (req, res) => {
   const { id } = req.params
   const showArtist = await getOneArtist(id)
   !showArtist.message
@@ -32,7 +33,7 @@ artist.get("/:id", async (req, res) => {
 })
 
 // create (post)
-artist.post("/", checkArtist, checkAlbum, async (req, res) => {
+artists.post("/", checkArtist, checkAlbum, async (req, res) => {
   try {
     const OneArtist = await createArtist(req.body)
     res.status(200).json(OneArtist)
@@ -42,7 +43,7 @@ artist.post("/", checkArtist, checkAlbum, async (req, res) => {
 })
 
 // Delete
-artist.delete("/:id", async (req, res) => {
+artists.delete("/:id", async (req, res) => {
   try {
     const deletedOneArtist = await deleteArtist(id)
     res.status(200).json(deletedOneArtist)
@@ -51,8 +52,8 @@ artist.delete("/:id", async (req, res) => {
   }
 })
 
-// update Reviews
-artist.put("/:id", checkAlbum, checkArtist, async (req, res) => {
+// update artist
+artists.put("/:id", checkAlbum, checkArtist, async (req, res) => {
   try {
     const updateOneArtist = await updateArtist(id, req.body)
     res.status(200).json(updateOneArtist)
@@ -60,4 +61,4 @@ artist.put("/:id", checkAlbum, checkArtist, async (req, res) => {
     res.status(500).json({ error: " review not found" })
   }
 })
-module.exports = artist
+module.exports = artists

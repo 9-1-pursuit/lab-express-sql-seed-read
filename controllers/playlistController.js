@@ -1,19 +1,19 @@
 const express = require("express")
-const playlist = express.Router()
+const playlists = express.Router()
 const {
   getAllPlaylist,
   createPlaylist,
   deletePlaylist,
   getOnePlaylist,
   updatePlaylist,
-} = require("../queries/playlist")
+} = require("../queries/playlists")
 const { checkTitle } = require("../validations/checkSongs")
 
 const songController = require("./songController")
-playlist.use("./playlistId/songs", songController)
+playlists.use("./playlistId/songs", songController)
 
 // Index all playlist
-playlist.get("/", async (req, res) => {
+playlists.get("/", async (req, res) => {
   const { playlistId } = req.params
   const allPlaylist = await getAllPlaylist(playlistId)
   allPlaylist[0]
@@ -22,7 +22,7 @@ playlist.get("/", async (req, res) => {
 })
 
 // show one playlist
-playlist.get("/:id", async (req, res) => {
+playlists.get("/:id", async (req, res) => {
   const { id } = req.params
   const getPlaylist = await getOnePlaylist(id)
   !getPlaylist.message
@@ -31,7 +31,7 @@ playlist.get("/:id", async (req, res) => {
 })
 
 // create playlist
-playlist.post("/", checkTitle, async (req, res) => {
+playlists.post("/", checkTitle, async (req, res) => {
   try {
     const createdPlaylist = await createPlaylist(req.body)
     res.status(200).json(createdPlaylist)
@@ -41,7 +41,7 @@ playlist.post("/", checkTitle, async (req, res) => {
 })
 
 // delete playlist
-playlist.delete("/:id", async (req, res) => {
+playlists.delete("/:id", async (req, res) => {
   try {
     const { id } = req.params
     const deletedPlaylist = await deletePlaylist(id)
@@ -52,7 +52,7 @@ playlist.delete("/:id", async (req, res) => {
 })
 
 // update
-playlist.put("/:id", checkTitle, async (req, res) => {
+playlists.put("/:id", checkTitle, async (req, res) => {
   try {
     const { id } = req.params
     const updatePlaylists = await updatePlaylist(id, req.body)
@@ -62,4 +62,4 @@ playlist.put("/:id", checkTitle, async (req, res) => {
   }
 })
 
-module.exports = playlist
+module.exports = playlists

@@ -1,5 +1,5 @@
 \c songs_dev;
-INSERT INTO playlist (title, genre) VALUES
+INSERT INTO playlists (title, genre) VALUES
 ('Sleep meditation', 'relaxation'),
 ('Chill Mix', 'hip-hop'),
 ('Freaky playlist', 'R&B'),
@@ -8,7 +8,7 @@ INSERT INTO playlist (title, genre) VALUES
 ('Playlist for Her', 'mix genre'),
 ('AfroBeats mix', 'mix');
 
-INSERT INTO artist (name, album) VALUES 
+INSERT INTO artists (name, album) VALUES 
 ('Tems', 'For Broken Ears'),
 ('Kendrick Lamar', 'Mr. Morale & The Big Steppers'),
 ('Future', 'I NEVER LIKED YOU'),
@@ -17,7 +17,7 @@ INSERT INTO artist (name, album) VALUES
 ('Micheal Jackson', 'Thriller'),
 ('lil Wayne', 'Tha Carter II');
 
--- INSERT INTO album (name, artist, released) VALUES
+-- INSERT INTO albums (name, artist, released) VALUES
 -- ()
 
 
