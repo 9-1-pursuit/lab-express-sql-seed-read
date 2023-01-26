@@ -3,7 +3,7 @@ const cors = require("cors")
 const express = require("express")
 const songController = require("./controllers/songController.js")
 // // const playlistController = require("./controllers/playlistController")
-// const albumController = require("./controllers/albumController")
+
 const artistController = require("./controllers/artistController")
 
 // CONFIGURATION
@@ -15,7 +15,6 @@ app.use(express.json())
 app.use("/songs", songController)
 // app.use("/playlist", playlistController)
 app.use("/artists", artistController)
-// app.use("/album", albumController)
 
 // ROUTES
 app.get("/", (req, res) => {
