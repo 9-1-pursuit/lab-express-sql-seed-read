@@ -24,8 +24,8 @@ const getOneArtist = async (id) => {
 const createArtist = async (artist) => {
   try {
     const createdOneArtist = await db.one(
-      "INSERT INTO artists (title, genre) VALUES($1, $2) RETURNING *",
-      [artist.title, artist.genre]
+      "INSERT INTO artists (name, album, released) VALUES($1, $2, $3) RETURNING *",
+      [artist.name, artist.album, artist.released]
     )
     return createdOneArtist
   } catch (error) {
@@ -49,8 +49,8 @@ const deleteArtist = async (id) => {
 const updateArtist = async (id, artist) => {
   try {
     const updatedArtist = await db.one(
-      "UPDATE artists SET title=$1, genre=$2 WHERE id=$3 RETURNING *",
-      [artist.name, artist.album, id]
+      "UPDATE artists SET name=$1, album=$2,  released=$3, WHERE id=$4 RETURNING *",
+      [artist.name, artist.album, artist.released, id]
     )
     return updatedArtist
   } catch (error) {

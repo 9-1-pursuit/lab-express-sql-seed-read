@@ -19,7 +19,8 @@ CREATE DATABASE songs_dev;
 CREATE TABLE artists (
     id SERIAL PRIMARY KEY,
     name TEXT NOT NULL,
-    album TEXT NOT NULL
+    album TEXT NOT NULL,
+    released TEXT 
 );
 
 -- added artists and playlists id to songs table

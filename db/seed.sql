@@ -8,14 +8,14 @@
 -- ('Playlist for Her', 'mix genre'),
 -- ('AfroBeats mix', 'mix');
 
-INSERT INTO artists (name, album) VALUES 
-('Tems', 'For Broken Ears'),
-('Kendrick Lamar', 'Mr. Morale & The Big Steppers'),
-('Future', 'I NEVER LIKED YOU'),
-('Brent Faiyaz', 'Fuck The World'),
-('Jay-z', 'Reasonable Doubt'),
-('Micheal Jackson', 'Thriller'),
-('lil Wayne', 'Tha Carter II');
+INSERT INTO artists (name, album, released) VALUES 
+('Tems', 'For Broken Ears','2022'),
+('Kendrick Lamar', 'Mr. Morale & The Big Steppers', '2202'),
+('Future', 'I NEVER LIKED YOU', '2022'),
+('Brent Faiyaz', 'Fuck The World', '2020'),
+('Jay-z', 'Reasonable Doubt', '1996'),
+('Micheal Jackson', 'Thriller', '1982'),
+('lil Wayne', 'Tha Carter II','2005');
 
 -- INSERT INTO albums (name, artist, released) VALUES
 -- ()
