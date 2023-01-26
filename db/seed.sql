@@ -1,12 +1,12 @@
 \c songs_dev;
-INSERT INTO playlists (title, genre) VALUES
-('Sleep meditation', 'relaxation'),
-('Chill Mix', 'hip-hop'),
-('Freaky playlist', 'R&B'),
-('Dwayne Johnson iron Paradise Tour', 'workout'),
-('Driving Mix', 'mix'),
-('Playlist for Her', 'mix genre'),
-('AfroBeats mix', 'mix');
+-- INSERT INTO playlists (title, genre) VALUES
+-- ('Sleep meditation', 'relaxation'),
+-- ('Chill Mix', 'hip-hop'),
+-- ('Freaky playlist', 'R&B'),
+-- ('Dwayne Johnson iron Paradise Tour', 'workout'),
+-- ('Driving Mix', 'mix'),
+-- ('Playlist for Her', 'mix genre'),
+-- ('AfroBeats mix', 'mix');
 
 INSERT INTO artists (name, album) VALUES 
 ('Tems', 'For Broken Ears'),
@@ -40,6 +40,6 @@ INSERT INTO songs (name, artist, album, time, is_favorite) VALUES
 ('City of Gods', 'Fivio Foreign', 'B.I.B.L.E', '4:16', true),
 ('Otis', 'Jay-z Kanye West', 'Watch throne', '2:58', true),
 ('understand', 'Omah Lay', 'Boy Alone', '2:54', true),
-('Rush', 'Ayra Starr', '19& Dangerous(DELUXE)', '3:05', true)
+('Rush', 'Ayra Starr', '19& Dangerous(DELUXE)', '3:05', true),
 ('23', 'Skang', 'single', '2:24', true),
 ('More Life', 'Burna Boy', 'OUTSIDE', '1:22', false);
