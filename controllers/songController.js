@@ -10,7 +10,7 @@ const {
 } = require("../queries/songs")
 const {
   checkSongName,
-  checkSongArtist,
+  checkArtist,
   checkBoolean,
   validateURL,
 } = require("../validations/checkSongs")
@@ -39,7 +39,7 @@ songs.get("/:id", async (req, res) => {
 songs.post(
   "/",
   checkSongName,
-  checkSongArtist,
+  checkArtist,
   checkBoolean,
   validateURL,
   async (req, res) => {
@@ -65,7 +65,7 @@ songs.delete("/:id", async (req, res) => {
 songs.put(
   "/:id",
   checkBoolean,
-  checkSongArtist,
+  checkArtist,
   checkSongName,
   validateURL,
   async (req, res) => {
