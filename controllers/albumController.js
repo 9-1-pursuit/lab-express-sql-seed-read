@@ -6,7 +6,7 @@ const {
   createAlbum,
   getOneAlbum,
   getAllAlbum,
-} = require("../queries/album")
+} = require("../queries/albums")
 const songController = require("./songController")
 album.use("./albumId/songs", songController)
 // Index (get)
