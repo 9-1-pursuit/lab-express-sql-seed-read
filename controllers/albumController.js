@@ -1,5 +1,5 @@
 const express = require("express")
-// const album = express.Router({ mergerParams: true })
+// const albums = express.Router({ mergerParams: true })
 const {
   updateAlbum,
   deleteAlbum,
@@ -8,9 +8,9 @@ const {
   getAllAlbum,
 } = require("../queries/albums")
 const songController = require("./songController")
-album.use("./albumId/songs", songController)
+albums.use("./albumId/songs", songController)
 // Index (get)
-album.get("/", async (req, res) => {
+albums.get("/", async (req, res) => {
   const { albumId } = req.params
   try {
     const allAlbum = await getAllAlbum(albumId)
@@ -21,7 +21,7 @@ album.get("/", async (req, res) => {
 })
 
 // SHOW (get)
-album.get("/:id", async (req, res) => {
+albums.get("/:id", async (req, res) => {
   const { id } = req.params
   const oneAlbum = await getOneAlbum(id)
   !oneAlbum.message
@@ -30,7 +30,7 @@ album.get("/:id", async (req, res) => {
 })
 
 // create (post)
-album.post("/", async (req, res) => {
+albums.post("/", async (req, res) => {
   try {
     const createdOneAlbum = await createAlbum(req.body)
     res.status(200).json(createdOneAlbum)
@@ -40,7 +40,7 @@ album.post("/", async (req, res) => {
 })
 
 // Delete
-album.delete("/:id", async (req, res) => {
+albums.delete("/:id", async (req, res) => {
   try {
     const deletedOneAlbum = await deleteAlbum(id)
     res.status(200).json(deletedOneAlbum)
@@ -50,7 +50,7 @@ album.delete("/:id", async (req, res) => {
 })
 
 // update Reviews
-album.put("/:id", async (req, res) => {
+albums.put("/:id", async (req, res) => {
   try {
     const updateOneAlbum = await updateAlbum(id, req.body)
     res.status(200).json(updateOneAlbum)
@@ -58,4 +58,4 @@ album.put("/:id", async (req, res) => {
     res.status(500).json({ error: " review not found" })
   }
 })
-module.exports = album
+module.exports = albums
