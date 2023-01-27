@@ -10,7 +10,7 @@ INSERT INTO artists (name, album, released) VALUES
 ('Micheal Jackson', 'Thriller', '1982'),
 ('lil Wayne', 'Tha Carter II','2005');
 
--- INSERT INTO albums (name, artist, released) VALUES
+ INSERT INTO albums (name, artist, released) VALUES
 ('Tems', 'For Broken Ears','2022'),
 ('Kendrick Lamar', 'Mr. Morale & The Big Steppers', '2202'),
 ('Future', 'I NEVER LIKED YOU', '2022'),

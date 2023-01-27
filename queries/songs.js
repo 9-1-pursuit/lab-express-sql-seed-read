@@ -1,5 +1,3 @@
-const songs = require("../controllers/songController")
-const { one } = require("../db/dbConfig")
 const db = require("../db/dbConfig")
 
 // async function call the data

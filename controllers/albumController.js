@@ -1,5 +1,5 @@
 const express = require("express")
-// const albums = express.Router({ mergerParams: true })
+const albums = express.Router()
 const {
   updateAlbum,
   deleteAlbum,

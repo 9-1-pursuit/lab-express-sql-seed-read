@@ -1,5 +1,4 @@
 const express = require("express")
-const db = require("../db/dbConfig")
 const songs = express.Router({ mergeParams: true })
 const {
   getAllSongs,

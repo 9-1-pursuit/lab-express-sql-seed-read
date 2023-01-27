@@ -4,6 +4,7 @@ const express = require("express")
 const songController = require("./controllers/songController.js")
 const playlistController = require("./controllers/playlistController")
 const artistController = require("./controllers/artistController")
+const albumController = require("./controllers/albumController")
 
 // CONFIGURATION
 const app = express()
@@ -14,6 +15,7 @@ app.use(express.json())
 app.use("/songs", songController)
 app.use("/artists", artistController)
 app.use("/playlists", playlistController)
+app.use("albums", albumController)
 
 // ROUTES
 app.get("/", (req, res) => {
