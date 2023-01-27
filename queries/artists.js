@@ -1,12 +1,24 @@
 const db = require("../db/dbConfig")
 
 // get all artist
-const getAllArtist = async () => {
-  try {
-    const allArtist = await db.any("SELECT * FROM artists")
-    return allArtist
-  } catch (error) {
-    return error
+const getAllArtist = async (songs_id) => {
+  if (songs_id === true) {
+    try {
+      const allArtistofOne = await db.any(
+        "SELECT * FROM artists WHERE songs_id=$1",
+        songs_id
+      )
+      return allArtistofOne
+    } catch (error) {
+      return error
+    }
+  } else {
+    try {
+      const allArtist = await db.any("SELECT * FROM artists")
+      return allArtist
+    } catch (error) {
+      return error
+    }
   }
 }
 
@@ -25,7 +37,7 @@ const createArtist = async (artist) => {
   try {
     const createdOneArtist = await db.one(
       "INSERT INTO artists (name, album, released) VALUES($1, $2, $3) RETURNING *",
-      [artist.name, artist.album, artist.released]
+      [artist.name, artist.album, artist.released, songs_id]
     )
     return createdOneArtist
   } catch (error) {
