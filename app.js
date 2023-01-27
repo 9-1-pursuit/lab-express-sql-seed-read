@@ -15,7 +15,7 @@ app.use(express.json())
 app.use("/songs", songController)
 app.use("/artists", artistController)
 app.use("/playlists", playlistController)
-app.use("albums", albumController)
+app.use("/albums", albumController)
 
 // ROUTES
 app.get("/", (req, res) => {
