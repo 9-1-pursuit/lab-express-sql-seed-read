@@ -44,7 +44,7 @@ const createArtist = async (artist) => {
     return error
   }
 }
-// delete a playlist
+// delete a artist
 const deleteArtist = async (id) => {
   try {
     const deletedArtist = await db.one(
@@ -57,7 +57,7 @@ const deleteArtist = async (id) => {
   }
 }
 
-// Update a playlist
+// Update a artist
 const updateArtist = async (id, artist) => {
   try {
     const updatedArtist = await db.one(

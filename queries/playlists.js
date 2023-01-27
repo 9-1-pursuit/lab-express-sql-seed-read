@@ -35,7 +35,7 @@ const getOnePlaylist = async (id) => {
 const createPlaylist = async (playlist) => {
   try {
     const createdOnePlaylist = await db.one(
-      "INSERT INTO playlists(title, genre) VALUES($1, $2) RETURNING *",
+      "INSERT INTO playlists (title, genre) VALUES($1, $2) RETURNING *",
       [playlist.title, playlist.genre, songs_id]
     )
     return createdOnePlaylist
