@@ -5,7 +5,7 @@ const getAllAlbum = async (songs_id) => {
   if (songs_id === true) {
     try {
       const allAlbum = await db.any(
-        "SELECT * FROM album WHERE songs_id=$1",
+        "SELECT * FROM albums WHERE songs_id=$1",
         songs_id
       )
       return allAlbum
@@ -14,7 +14,7 @@ const getAllAlbum = async (songs_id) => {
     }
   } else {
     try {
-      const allAlbum = await db.any("SELECT * FROM album")
+      const allAlbum = await db.any("SELECT * FROM albums")
       return allAlbum
     } catch (error) {
       return error
@@ -25,7 +25,7 @@ const getAllAlbum = async (songs_id) => {
 // get one album
 const getOneAlbum = async (id) => {
   try {
-    const oneAlbum = await db.one("SELECT * FROM album WHERE id=$1", id)
+    const oneAlbum = await db.one("SELECT * FROM albums WHERE id=$1", id)
     return oneAlbum
   } catch (error) {
     return error
@@ -36,7 +36,7 @@ const getOneAlbum = async (id) => {
 const createAlbum = async (album) => {
   try {
     const createdOneAlbum = await db.one(
-      "INSERT INTO album(name, artist, released, songs_id) VALUES($1, $2, $3, $4) RETURNING *",
+      "INSERT INTO albums (name, artist, released, songs_id) VALUES($1, $2, $3, $4) RETURNING *",
       [album.name, album.artist, album.released, songs_id]
     )
     return createdOneAlbum
@@ -48,7 +48,7 @@ const createAlbum = async (album) => {
 const deleteAlbum = async (id) => {
   try {
     const deletedAlbum = await db.one(
-      "DELETE FROM album WHERE id=$1 RETURNING * ",
+      "DELETE FROM albums WHERE id=$1 RETURNING * ",
       id
     )
     return deletedAlbum
@@ -61,7 +61,7 @@ const deleteAlbum = async (id) => {
 const updateAlbum = async (id, album) => {
   try {
     const updatedAlbum = await db.one(
-      "UPDATE album SET name=$1, artist=$2, released=$3 WHERE id=$4 RETURNING *",
+      "UPDATE albums SET name=$1, artist=$2, released=$3 WHERE id=$4 RETURNING *",
       [album.name, album.artist, album.released, id]
     )
     return updatedAlbum
