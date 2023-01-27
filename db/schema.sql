@@ -40,6 +40,6 @@ CREATE TABLE songs (
 
 
 -- will figure out how to use these later
-    -- playlist_id INTEGER REFERENCES playlist (id) ON DELETE CASCADE
-    -- album_id INTEGER REFERENCES album (id) ON DELETE CASCADE
+    
+    
 -- will figure out how to do all album and artist table when i get the time.
