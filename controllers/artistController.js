@@ -10,7 +10,7 @@ const {
 const { checkArtist, checkAlbum } = require("../validations/checkSongs")
 
 const songController = require("./songController")
-artists.use("./artistId/songs", songController)
+artists.use("/:artistId/songs", songController)
 
 // Index (get)
 artists.get("/", async (req, res) => {

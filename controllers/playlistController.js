@@ -10,7 +10,7 @@ const {
 const { checkTitle } = require("../validations/checkSongs")
 
 const songController = require("./songController")
-playlists.use("./playlistId/songs", songController)
+playlists.use("/:playlistId/songs", songController)
 
 // Index all playlist
 playlists.get("/", async (req, res) => {

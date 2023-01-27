@@ -9,7 +9,7 @@ const {
 } = require("../queries/albums")
 
 const songController = require("./songController")
-albums.use("./albumId/songs", songController)
+albums.use("/:albumId/songs", songController)
 
 // Index (get)
 albums.get("/", async (req, res) => {
