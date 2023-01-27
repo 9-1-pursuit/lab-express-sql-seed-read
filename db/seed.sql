@@ -1,12 +1,5 @@
 \c songs_dev;
--- INSERT INTO playlists (title, genre) VALUES
--- ('Sleep meditation', 'relaxation'),
--- ('Chill Mix', 'hip-hop'),
--- ('Freaky playlist', 'R&B'),
--- ('Dwayne Johnson iron Paradise Tour', 'workout'),
--- ('Driving Mix', 'mix'),
--- ('Playlist for Her', 'mix genre'),
--- ('AfroBeats mix', 'mix');
+
 
 INSERT INTO artists (name, album, released) VALUES 
 ('Tems', 'For Broken Ears','2022'),
@@ -20,6 +13,16 @@ INSERT INTO artists (name, album, released) VALUES
 -- INSERT INTO albums (name, artist, released) VALUES
 -- ()
 
+
+
+INSERT INTO playlists (title, genre) VALUES
+('Sleep meditation', 'relaxation'),
+('Chill Mix', 'hip-hop'),
+('Freaky playlist', 'R&B'),
+('Dwayne Johnson iron Paradise Tour', 'workout'),
+('Driving Mix', 'mix'),
+('Playlist for Her', 'mix genre'),
+('AfroBeats mix', 'mix');
 
 
 INSERT INTO songs (name, artist, album, time, is_favorite) VALUES
