@@ -13,6 +13,7 @@ app.use(cors())
 app.use(express.json())
 app.use("/songs", songController)
 app.use("/artists", artistController)
+app.use("/playlists", playlistController)
 
 // ROUTES
 app.get("/", (req, res) => {

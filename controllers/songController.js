@@ -16,12 +16,6 @@ const {
   checkAlbum,
 } = require("../validations/checkSongs")
 
-// import playlist controller and middleware
-// const albumController = require("./albumController")
-// const artistController =require("./artistController")
-// const playlistController = require("./playlistController")
-// songs.use("/:songsId/playlist", playlistController)
-
 // Index
 // importing array of songs from database
 songs.get("/", async (req, res) => {
