@@ -32,7 +32,7 @@ CREATE TABLE songs (
     album TEXT,
     time TEXT,
     is_favorite BOOLEAN,
-    artist_id INTEGER REFERENCES artists (id) ON DELETE CASCADE
+    artists_id INTEGER REFERENCES artists (id) ON DELETE CASCADE
 );
 -- will figure out how to use these later
     -- playlist_id INTEGER REFERENCES playlist (id) ON DELETE CASCADE

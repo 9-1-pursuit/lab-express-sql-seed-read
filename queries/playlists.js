@@ -43,7 +43,7 @@ const createPlaylist = async (playlist) => {
     return error
   }
 }
-s
+
 // delete a playlist
 const deletePlaylist = async (id) => {
   try {

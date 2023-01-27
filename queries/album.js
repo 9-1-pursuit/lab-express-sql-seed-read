@@ -23,7 +23,7 @@ const getAllAlbum = async (songs_id) => {
 }
 
 // get one album
-const getOneAlbum = async () => {
+const getOneAlbum = async (id) => {
   try {
     const oneAlbum = await db.one("SELECT * FROM album WHERE id=$1", id)
     return oneAlbum
@@ -36,7 +36,7 @@ const getOneAlbum = async () => {
 const createAlbum = async (album) => {
   try {
     const createdOneAlbum = await db.one(
-      "INSERT INTO album(name, artist, released) VALUES($1, $2, $3) RETURNING *",
+      "INSERT INTO album(name, artist, released, songs_id) VALUES($1, $2, $3, $4) RETURNING *",
       [album.name, album.artist, album.released, songs_id]
     )
     return createdOneAlbum

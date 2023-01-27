@@ -7,7 +7,8 @@ const {
   getOneAlbum,
   getAllAlbum,
 } = require("../queries/album")
-
+const songController = require("./songController")
+album.use("./albumId/songs", songController)
 // Index (get)
 album.get("/", async (req, res) => {
   const { albumId } = req.params
