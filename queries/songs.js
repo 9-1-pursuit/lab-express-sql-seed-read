@@ -26,7 +26,7 @@ const getSong = async (id) => {
 const createSong = async (song) => {
   try {
     const newSong = await db.one(
-      "INSERT INTO songs(name, artist, album, time, is_favorite, playlist_id) VALUES($1, $2, $3, $4, $5, $6) RETURNING *",
+      "INSERT INTO songs (name, artist, album, time, is_favorite, playlist_id) VALUES($1, $2, $3, $4, $5, $6) RETURNING *",
       [
         song.name,
         song.artist,
