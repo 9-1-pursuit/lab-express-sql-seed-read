@@ -21,6 +21,7 @@ const cn = DATABASE_URL
       port: PG_PORT,
       database: PG_DATABASE,
       user: PG_USER,
+      password: PG_PASSWORD
     };
 
 // open the connection with const db = pgp(cn);
