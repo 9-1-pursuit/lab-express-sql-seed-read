@@ -29,7 +29,7 @@ router.get("/", async (req, resp) => {
     }
     else{
         const songs = await getAllSongs(albumId)
-        
+        console.log("songs", songs)
         songs[0] ? 
         resp.status(200).json(songs) : 
         resp.status(500).json({ error: "Server Error" });
